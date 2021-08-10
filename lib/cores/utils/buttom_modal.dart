@@ -6,9 +6,10 @@ class CustomButtomModalService {
     Get.bottomSheet(
       child,
       isDismissible: false,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       enableDrag: false,
       backgroundColor: Colors.grey,
+      
     );
   }
 }
