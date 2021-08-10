@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "459643755670",
+    "project_id": "kod-chat-b396f",
+    "storage_bucket": "kod-chat-b396f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:459643755670:android:244b2013f5476da31136b7",
+        "android_client_info": {
+          "package_name": "com.example.kod_chat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "459643755670-g8kp7poj9vfcptgorr29il4hap09qbn4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGvPtPJYKf6afxBZkf7lZEQUrCDkDZRU0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "459643755670-g8kp7poj9vfcptgorr29il4hap09qbn4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
