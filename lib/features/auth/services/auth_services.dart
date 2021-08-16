@@ -75,6 +75,8 @@ class AuthenticationRepo {
 
     if (user == null) throw Exception('Opps, an error occured!');
 
+    userDetails = userDetails.copyWith(uid: user.uid);
+
     // TODO: add phone number check
 
     infoLog('userCredential: ${user.uid}', title: 'user sign up');
@@ -95,6 +97,7 @@ class AuthenticationRepo {
   Future<void> signOut() async {
     try {
       await _firebaseAuth.signOut();
+      await localDatabaseController.clear();
       infoLog('user loging out', title: 'log out');
     } catch (e, s) {
       errorLog(
@@ -108,9 +111,7 @@ class AuthenticationRepo {
   }
 
   Future<void> addUserDataToFirestore(UserDetailsModel userDetails) async {
-    await userCollectionRef
-        .doc(userDetails.uid)
-        .set(userDetails.toMap());
+    await userCollectionRef.doc(userDetails.uid).set(userDetails.toMap());
     infoLog('Added User database', title: 'Add user data To Db');
   }
 
@@ -129,6 +130,8 @@ class AuthenticationRepo {
   Future<Map<String, dynamic>> getLoggedInUser() async {
     final DocumentSnapshot<dynamic> documentSnapshot =
         await userCollectionRef.doc(getUserUid()).get();
+
+    if (!documentSnapshot.exists) throw 'User Data Not Found!';
 
     return documentSnapshot.data() as Map<String, dynamic>;
   }
