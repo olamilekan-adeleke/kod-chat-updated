@@ -35,7 +35,7 @@ class RegisterController extends GetxController {
     _controllerStateEnum.value = ControllerStateEnum.busy;
 
     final UserDetailsModel user = UserDetailsModel(
-      uid: Uuid().v1(),
+      uid: '',
       email: emailController.text.trim(),
       fullName: '${firstnameController.text.trim()}'
           ' ${lastnameController.text.trim()}',
