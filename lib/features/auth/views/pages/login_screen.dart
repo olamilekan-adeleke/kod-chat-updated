@@ -1,3 +1,5 @@
+import 'package:kod_chat/cores/constants/color.dart';
+
 import '../../../../cores/components/custom_button.dart';
 import '../../../../cores/components/custom_scaffold_widget.dart';
 import '../../../../cores/components/custom_text_widget.dart';
@@ -27,19 +29,33 @@ class LoginScreen extends StatelessWidget {
           children: <Widget>[
             SizedBox(height: sizerSp(20)),
             textWidget(
-              'Login',
+              'Hey, \nLogin Now.',
               fontWeight: FontWeight.w700,
               fontSize: sizerSp(30),
             ),
-            textWidget(
-              'Welcome Back!\nLogin to your account',
-              fontWeight: FontWeight.w200,
-              fontSize: sizerSp(14),
+            GestureDetector(
+              onTap: () => NavigationService.navigateTo(RouteName.signup),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  textWidget(
+                    'Are you new here? ',
+                    fontWeight: FontWeight.w200,
+                    fontSize: sizerSp(13),
+                  ),
+                  textWidget(
+                    'Create Account',
+                    fontWeight: FontWeight.w400,
+                    fontSize: sizerSp(13),
+                    textColor: kcPrimaryColorTwo,
+                  ),
+                ],
+              ),
             ),
-            SizedBox(height: sizerSp(20)),
+            SizedBox(height: sizerSp(30)),
             Center(
               child: SvgPicture.asset(
-                'assets/images/login.svg',
+                'assets/images/_login.svg',
                 height: sizerSp(100),
                 width: sizerSp(150),
               ),
@@ -69,14 +85,14 @@ class LoginScreen extends StatelessWidget {
                       NavigationService.navigateTo(RouteName.forgotPassword),
                   child: textWidget(
                     'Forgot Password?',
-                    fontWeight: FontWeight.w200,
+                    fontWeight: FontWeight.w400,
                     fontSize: sizerSp(12),
-                    textColor: Colors.blue,
+                    textColor: kcPrimaryColorTwo,
                   ),
                 ),
               ],
             ),
-            SizedBox(height: sizerSp(40)),
+            SizedBox(height: sizerSp(60)),
             Obx(() {
               if (loginControllers.controllerStateEnum ==
                   ControllerStateEnum.busy) {
@@ -88,26 +104,6 @@ class LoginScreen extends StatelessWidget {
               );
             }),
             SizedBox(height: sizerSp(20)),
-            GestureDetector(
-              onTap: () => NavigationService.navigateTo(RouteName.signup),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  textWidget(
-                    // ignore: avoid_escaping_inner_quotes
-                    'Don\'t have an account? ',
-                    fontWeight: FontWeight.w200,
-                    fontSize: sizerSp(13),
-                  ),
-                  textWidget(
-                    'Sign Up Here',
-                    fontWeight: FontWeight.w200,
-                    fontSize: sizerSp(13),
-                    textColor: Colors.blue,
-                  ),
-                ],
-              ),
-            ),
           ],
         ),
       ),
