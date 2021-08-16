@@ -1,3 +1,4 @@
+import 'package:kod_chat/cores/utils/local_database_controller.dart';
 import 'package:kod_chat/features/conversations/view/screens/converstion_screen.dart';
 
 import '../../../../cores/utils/emums.dart';
@@ -13,12 +14,15 @@ class WrapperScreen extends StatelessWidget {
 
   static final AuthStateController authStateController =
       Get.find<AuthStateController>();
+  static final LocalDatabaseController localDatabaseController =
+      Get.find<LocalDatabaseController>();
 
   @override
   Widget build(BuildContext context) {
     return Obx(
       () {
-        if (authStateController.authStateEnum.value == AuthStateEnum.loggedIn) {
+        if (authStateController.authStateEnum.value == AuthStateEnum.loggedIn &&
+            localDatabaseController.hasUserData) {
           return const ConversationScreen();
         } else {
           return const LoginScreen();

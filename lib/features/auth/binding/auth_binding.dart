@@ -1,4 +1,6 @@
-import '../../../cores/utils/local_database_repo.dart';
+import 'package:kod_chat/cores/utils/local_database_controller.dart';
+
+
 import '../../../features/auth/controllers/auth_state_controller.dart';
 import '../../../features/auth/controllers/forgot_password_controller.dart';
 import '../../../features/auth/controllers/login_controller.dart';
@@ -9,7 +11,7 @@ import 'package:get/instance_manager.dart';
 class AuthenticationBinding extends Bindings {
   @override
   void dependencies() {
-    Get.put<LocaldatabaseRepo>(LocaldatabaseRepo());
+    Get.put<LocalDatabaseController>(LocalDatabaseController());
     Get.put<AuthenticationRepo>(AuthenticationRepo());
     Get.put<AuthStateController>(AuthStateController());
     Get.put<RegisterController>(RegisterController());

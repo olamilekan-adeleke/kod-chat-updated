@@ -50,19 +50,19 @@ class _KodTextFieldState extends State<KodTextField> {
             fillColor: Colors.grey.shade100,
             border: OutlineInputBorder(
               borderSide: const BorderSide(color: Colors.transparent),
-              borderRadius: BorderRadius.circular(sizerSp(15.0)),
+              borderRadius: BorderRadius.circular(sizerSp(5.0)),
             ),
             focusedBorder: OutlineInputBorder(
               borderSide: const BorderSide(color: Colors.transparent),
-              borderRadius: BorderRadius.circular(sizerSp(15.0)),
+              borderRadius: BorderRadius.circular(sizerSp(5.0)),
             ),
             enabledBorder: OutlineInputBorder(
               borderSide: const BorderSide(color: Colors.transparent),
-              borderRadius: BorderRadius.circular(sizerSp(15.0)),
+              borderRadius: BorderRadius.circular(sizerSp(5.0)),
             ),
             disabledBorder: OutlineInputBorder(
               borderSide: const BorderSide(color: Colors.transparent),
-              borderRadius: BorderRadius.circular(sizerSp(15.0)),
+              borderRadius: BorderRadius.circular(sizerSp(5.0)),
             ),
             hintText: widget.hintText,
             hintStyle: TextStyle(

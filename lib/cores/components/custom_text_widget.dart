@@ -15,7 +15,7 @@ Widget textWidget(
 }) {
   return Text(
     text,
-    style: GoogleFonts.signikaNegative(
+    style: GoogleFonts.blinker(
       fontSize: fontSize,
       color: textColor,
       fontWeight: fontWeight,

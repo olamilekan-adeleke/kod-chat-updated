@@ -26,14 +26,9 @@ class SignupScreen extends StatelessWidget {
         children: <Widget>[
           SizedBox(height: sizerSp(20)),
           textWidget(
-            'Sign Up',
+            'Create \nNew Account',
             fontWeight: FontWeight.w700,
             fontSize: sizerSp(30),
-          ),
-          textWidget(
-            'Welcome To Elite!\nFill the form below to create an account',
-            fontWeight: FontWeight.w200,
-            fontSize: sizerSp(14),
           ),
           SizedBox(height: sizerSp(20)),
           Center(

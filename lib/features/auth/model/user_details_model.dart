@@ -10,7 +10,6 @@ class UserDetailsModel {
     required this.phoneNumber,
     this.profilePicUrl,
     this.dateJoined,
-    required this.walletBalance,
   });
 
   factory UserDetailsModel.fromMap(Map<String, dynamic>? map) {
@@ -18,10 +17,7 @@ class UserDetailsModel {
       uid: map!['uid'] as String,
       email: map['email'] as String,
       fullName: map['full_name'] as String,
-      walletBalance: map['wallet_balance'] != null
-          ? double.parse(map['wallet_balance'].toString())
-          : 0.0,
-      phoneNumber: map['phone_number'] as int,
+      phoneNumber: map['phone_number'] as String,
       profilePicUrl: map['profile_pic_url'] != null
           ? map['profile_pic_url'] as String
           : null,
@@ -36,10 +32,9 @@ class UserDetailsModel {
   final String uid;
   final String email;
   final String fullName;
-  final int phoneNumber;
+  final String phoneNumber;
   final String? profilePicUrl;
   final Timestamp? dateJoined;
-  final double? walletBalance;
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
@@ -68,10 +63,9 @@ class UserDetailsModel {
     String? uid,
     String? email,
     String? fullName,
-    int? phoneNumber,
+    String? phoneNumber,
     String? profilePicUrl,
     Timestamp? dateJoined,
-    double? walletBalance,
   }) {
     return UserDetailsModel(
       uid: uid ?? this.uid,
@@ -80,7 +74,6 @@ class UserDetailsModel {
       phoneNumber: phoneNumber ?? this.phoneNumber,
       profilePicUrl: profilePicUrl ?? this.profilePicUrl,
       dateJoined: dateJoined ?? this.dateJoined,
-      walletBalance: walletBalance ?? this.walletBalance,
     );
   }
 }
