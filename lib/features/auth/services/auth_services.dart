@@ -2,16 +2,16 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/instance_manager.dart';
+import 'package:kod_chat/cores/utils/local_database_controller.dart';
 import '../../../cores/utils/firebase_messaging_utils.dart';
-import '../../../cores/utils/local_database_repo.dart';
 import '../../../cores/utils/logger.dart';
 import '../../../features/auth/model/login_user_model.dart';
 import '../../../features/auth/model/user_details_model.dart';
 
 class AuthenticationRepo {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-  static final LocaldatabaseRepo localdatabaseRepo =
-      Get.find<LocaldatabaseRepo>();
+  static final LocalDatabaseController localDatabaseController =
+      Get.find<LocalDatabaseController>();
   final CollectionReference<dynamic> userCollectionRef =
       FirebaseFirestore.instance.collection('users');
 
@@ -38,20 +38,20 @@ class AuthenticationRepo {
       email: email,
       password: password,
     );
-    
+
     final User? user = userCredential.user;
     infoLog('userCredential: ${user?.uid}', title: 'user log in');
 
     final Map<String, dynamic> userData = await getLoggedInUser();
     userData.remove('date_joined');
-    await localdatabaseRepo.saveUserDataToLocalDB(userData);
+    await localDatabaseController.saveUserDataToLocalDB(userData);
     await NotificationMethods.subscribeToTopice(user!.uid);
   }
 
   Future<bool> authenticateUser(String password) async {
     bool authenticated = false;
     final String email =
-        (await localdatabaseRepo.getUserDataFromLocalDB()).email;
+        (await localDatabaseController.getUserDataFromLocalDB())!.email;
 
     final UserCredential userCredential = await _firebaseAuth
         .signInWithEmailAndPassword(email: email, password: password);
@@ -63,46 +63,30 @@ class AuthenticationRepo {
     return authenticated;
   }
 
-  Future<void> registerUserWithEmailAndPassword({
-    required String email,
-    required String password,
-    required String fullName,
-    required int number,
-  }) async {
-    final UserCredential userCredential = await _firebaseAuth
-        .createUserWithEmailAndPassword(email: email, password: password);
+  Future<void> registerUserWithEmailAndPassword(
+    UserDetailsModel userDetails,
+    String password,
+  ) async {
+    final UserCredential userCredential =
+        await _firebaseAuth.createUserWithEmailAndPassword(
+            email: userDetails.email, password: password);
 
     final User? user = userCredential.user;
 
     if (user == null) throw Exception('Opps, an error occured!');
 
-    // TODO: add phone number check
+    userDetails = userDetails.copyWith(uid: user.uid);
 
-    final UserDetailsModel userDetailsModel = UserDetailsModel(
-      uid: user.uid,
-      email: email,
-      fullName: fullName,
-      walletBalance: 0.0,
-      phoneNumber: number,
-      dateJoined: Timestamp.now(),
-    );
+    // TODO: add phone number check
 
     infoLog('userCredential: ${user.uid}', title: 'user sign up');
 
-    await addUserDataToFirestore(userDetailsModel);
+    await addUserDataToFirestore(userDetails);
 
     await NotificationMethods.subscribeToTopice(user.uid);
 
-    final UserDetailsModel userDetailsForLocalDb = UserDetailsModel(
-      uid: user.uid,
-      email: email,
-      fullName: fullName,
-      phoneNumber: number,
-      walletBalance: 0.0,
-    );
-
-    await localdatabaseRepo
-        .saveUserDataToLocalDB(userDetailsForLocalDb.toMap());
+    await localDatabaseController
+        .saveUserDataToLocalDB(userDetails.toMapForLocalDb());
   }
 
   Future<void> resetPassword(String email) async {
@@ -113,6 +97,7 @@ class AuthenticationRepo {
   Future<void> signOut() async {
     try {
       await _firebaseAuth.signOut();
+      await localDatabaseController.clear();
       infoLog('user loging out', title: 'log out');
     } catch (e, s) {
       errorLog(
@@ -126,16 +111,14 @@ class AuthenticationRepo {
   }
 
   Future<void> addUserDataToFirestore(UserDetailsModel userDetails) async {
-    await userCollectionRef
-        .doc(userDetails.uid)
-        .set(userDetails.toMapForLocalDb());
+    await userCollectionRef.doc(userDetails.uid).set(userDetails.toMap());
     infoLog('Added User database', title: 'Add user data To Db');
   }
 
   Future<void> updateUserData(UserDetailsModel userDetails) async {
     try {
       await userCollectionRef.doc(userDetails.uid).update(userDetails.toMap());
-      await localdatabaseRepo.saveUserDataToLocalDB(userDetails.toMap());
+      await localDatabaseController.saveUserDataToLocalDB(userDetails.toMap());
       infoLog('Upadted User database', title: 'Upadted user data To Db');
     } catch (e, s) {
       debugPrint(e.toString());
@@ -147,6 +130,8 @@ class AuthenticationRepo {
   Future<Map<String, dynamic>> getLoggedInUser() async {
     final DocumentSnapshot<dynamic> documentSnapshot =
         await userCollectionRef.doc(getUserUid()).get();
+
+    if (!documentSnapshot.exists) throw 'User Data Not Found!';
 
     return documentSnapshot.data() as Map<String, dynamic>;
   }

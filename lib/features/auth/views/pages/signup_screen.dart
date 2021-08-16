@@ -1,3 +1,5 @@
+import 'package:kod_chat/cores/constants/color.dart';
+
 import '../../../../cores/components/custom_button.dart';
 import '../../../../cores/components/custom_scaffold_widget.dart';
 import '../../../../cores/components/custom_text_widget.dart';
@@ -26,14 +28,28 @@ class SignupScreen extends StatelessWidget {
         children: <Widget>[
           SizedBox(height: sizerSp(20)),
           textWidget(
-            'Sign Up',
+            'Create \nNew Account',
             fontWeight: FontWeight.w700,
             fontSize: sizerSp(30),
           ),
-          textWidget(
-            'Welcome To Elite!\nFill the form below to create an account',
-            fontWeight: FontWeight.w200,
-            fontSize: sizerSp(14),
+          GestureDetector(
+            onTap: () => NavigationService.goBack(),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                textWidget(
+                  'Already have an account? ',
+                  fontWeight: FontWeight.w200,
+                  fontSize: sizerSp(13),
+                ),
+                textWidget(
+                  'Login',
+                  fontWeight: FontWeight.w400,
+                  fontSize: sizerSp(13),
+                  textColor: kcPrimaryColorTwo,
+                ),
+              ],
+            ),
           ),
           SizedBox(height: sizerSp(20)),
           Center(
@@ -100,25 +116,6 @@ class SignupScreen extends StatelessWidget {
             );
           }),
           SizedBox(height: sizerSp(20)),
-          GestureDetector(
-            onTap: () => NavigationService.goBack(),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                textWidget(
-                  'Already have an account? ',
-                  fontWeight: FontWeight.w200,
-                  fontSize: sizerSp(13),
-                ),
-                textWidget(
-                  'LogIn',
-                  fontWeight: FontWeight.w200,
-                  fontSize: sizerSp(13),
-                  textColor: Colors.blue,
-                ),
-              ],
-            ),
-          ),
         ],
       ),
     );

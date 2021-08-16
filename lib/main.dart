@@ -8,5 +8,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await Config.setUpHiveLocalDB();
+  Config.setUpBindings();
+  // await Config.fakerSetup();
   runApp(KodChatApp());
 }

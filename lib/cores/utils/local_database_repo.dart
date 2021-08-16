@@ -9,9 +9,18 @@ class LocaldatabaseRepo {
     await box.write(userDataBoxName, data);
   }
 
-  Future<UserDetailsModel> getUserDataFromLocalDB() async {
-    final Map<String, dynamic> userData =
-        await box.read(userDataBoxName) as Map<String, dynamic>;
-    return UserDetailsModel.fromMap(userData);
+  Future<UserDetailsModel?> getUserDataFromLocalDB() async {
+    final Map? userDataMap = box.read(userDataBoxName);
+    final Map<String, dynamic>? userData =
+        userDataMap == null ? null : Map<String, dynamic>.from(userDataMap);
+
+    final UserDetailsModel? userDetailsModel =
+        userData != null ? UserDetailsModel.fromMap(userData) : null;
+
+    return userDetailsModel;
+  }
+
+  Future<void> clear() async {
+    return box.remove(userDataBoxName);
   }
 }

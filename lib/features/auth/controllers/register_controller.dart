@@ -1,5 +1,9 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:kod_chat/features/auth/model/user_details_model.dart';
+import 'package:uuid/uuid.dart';
+
 import '../../../cores/constants/error_text.dart';
 import '../../../cores/utils/emums.dart';
 import '../../../cores/utils/logger.dart';
@@ -30,14 +34,20 @@ class RegisterController extends GetxController {
   Future<void> registerUser() async {
     _controllerStateEnum.value = ControllerStateEnum.busy;
 
+    final UserDetailsModel user = UserDetailsModel(
+      uid: '',
+      email: emailController.text.trim(),
+      fullName: '${firstnameController.text.trim()}'
+          ' ${lastnameController.text.trim()}',
+      phoneNumber: phoneController.text.trim(),
+      dateJoined: Timestamp.now(),
+      profilePicUrl: null,
+    );
+
     try {
       await _authenticationRepo.registerUserWithEmailAndPassword(
-        email: emailController.text.trim(),
-        password: passwordController.text.trim(),
-        fullName: '${firstnameController.text.trim()}'
-            ' ${lastnameController.text.trim()}',
-        number: int.parse(phoneController.text.trim()),
-      );
+          user, passwordController.text.trim());
+
       _controllerStateEnum.value = ControllerStateEnum.success;
       NavigationService.goBack();
       CustomSnackBarService.showSuccessSnackBar(

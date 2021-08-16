@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:kod_chat/features/auth/services/auth_services.dart';
 
 class ConversationScreen extends StatelessWidget {
   const ConversationScreen();
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -11,7 +12,10 @@ class ConversationScreen extends StatelessWidget {
       ),
       body: Center(
         child: Container(
-          child: Text('ConversationScreen'),
+          child: GestureDetector(
+            onTap: () => AuthenticationRepo().signOut(),
+            child: Text('ConversationScreen'),
+          ),
         ),
       ),
     );

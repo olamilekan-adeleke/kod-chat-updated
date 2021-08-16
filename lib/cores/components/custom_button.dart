@@ -120,12 +120,12 @@ class CustomButton extends StatelessWidget {
                 )
               : MaterialStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20.0),
+                    borderRadius: BorderRadius.circular(5.0),
                   ),
                 ),
           backgroundColor: busy
               ? MaterialStateProperty.all(kcGrey100)
-              : MaterialStateProperty.all(color ?? kcPrimaryColor),
+              : MaterialStateProperty.all(color ?? kcPrimaryColorTwo),
         ),
         child: child,
       ),
