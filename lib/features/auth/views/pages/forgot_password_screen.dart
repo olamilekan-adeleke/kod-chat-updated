@@ -1,4 +1,6 @@
 import 'package:kod_chat/cores/components/custom_scaffold_widget.dart';
+import 'package:kod_chat/cores/constants/color.dart';
+import 'package:kod_chat/cores/utils/navigator_service.dart';
 
 import '../../../../cores/components/custom_button.dart';
 import '../../../../cores/components/custom_text_widget.dart';
@@ -25,11 +27,35 @@ class ForgotPasswordScreen extends StatelessWidget {
         title: textWidget('', fontWeight: FontWeight.w700),
         centerTitle: true,
         elevation: 0.0,
+        leading: Container(
+          margin: EdgeInsets.symmetric(
+            horizontal: sizerSp(5.0),
+            vertical: sizerSp(5.0),
+          ),
+          padding: EdgeInsets.only(right: sizerSp(3.0)),
+          decoration: BoxDecoration(
+            border: Border.all(
+              color: kcTextColor.withOpacity(0.6),
+              width: sizerSp(1.0),
+            ),
+            borderRadius: BorderRadius.circular(sizerSp(5.0)),
+          ),
+          child: GestureDetector(
+            child: const Center(
+              child: Icon(
+                Icons.arrow_back_ios_new,
+                color: kcTextColor,
+              ),
+            ),
+            onTap: () => NavigationService.goBack(),
+          ),
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
+            SizedBox(height: sizerSp(20)),
             textWidget(
               'Reset Password',
               fontWeight: FontWeight.w700,
