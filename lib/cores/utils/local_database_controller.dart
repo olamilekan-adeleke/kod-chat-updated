@@ -22,11 +22,17 @@ class LocalDatabaseController extends GetxController {
       log(' $value ');
       log('========== listening for user data ==========');
 
+      if (value == null) {
+        user.value =
+            UserDetailsModel(email: '', fullName: '', phoneNumber: '', uid: '');
+        return;
+      }
+
       final Map<String, dynamic>? userDataMap = LocaldatabaseRepo.box
           .read(LocaldatabaseRepo.userDataBoxName) as Map<String, dynamic>?;
 
       final UserDetailsModel userDetailsModel =
-          UserDetailsModel.fromMap(userDataMap);
+          UserDetailsModel.fromMap(userDataMap ?? {});
 
       user.value = userDetailsModel;
     });
@@ -38,6 +44,10 @@ class LocalDatabaseController extends GetxController {
 
   Future<UserDetailsModel?> getUserDataFromLocalDB() async {
     return localdatabaseRepo.getUserDataFromLocalDB();
+  }
+
+  Future<void> clear() async {
+    return localdatabaseRepo.clear();
   }
 
   @override

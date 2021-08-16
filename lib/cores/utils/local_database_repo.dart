@@ -19,4 +19,8 @@ class LocaldatabaseRepo {
 
     return userDetailsModel;
   }
+
+  Future<void> clear() async {
+    return box.remove(userDataBoxName);
+  }
 }
