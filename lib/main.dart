@@ -9,5 +9,6 @@ Future<void> main() async {
   await Firebase.initializeApp();
   await Config.setUpHiveLocalDB();
   Config.setUpBindings();
+  // await Config.fakerSetup();
   runApp(KodChatApp());
 }
