@@ -18,6 +18,7 @@ class KodChatApp extends StatelessWidget {
         title: 'Kod Chat',
         theme: ThemeData(
           primaryColor: kcPrimaryColor,
+          accentColor: kcPrimaryColorTwo,
         ),
         home: WrapperScreen(),
         getPages: getPages(),
@@ -28,8 +29,8 @@ class KodChatApp extends StatelessWidget {
 
 List<GetPage<dynamic>>? getPages() {
   return <GetPage<dynamic>>[
-    GetPage(name: RouteName.login, page: ()=> LoginScreen()),
-    GetPage(name: RouteName.signup, page: ()=> SignupScreen()),
+    GetPage(name: RouteName.login, page: () => LoginScreen()),
+    GetPage(name: RouteName.signup, page: () => SignupScreen()),
     GetPage(name: RouteName.forgotPassword, page: () => ForgotPasswordScreen()),
     GetPage(name: RouteName.home, page: () => ConversationScreen()),
   ];
