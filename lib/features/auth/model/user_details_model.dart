@@ -14,7 +14,7 @@ class UserDetailsModel {
 
   factory UserDetailsModel.fromMap(Map<String, dynamic>? map) {
     return UserDetailsModel(
-      uid: map!['uid'] as String,
+      uid: map!['uid'].toString(),
       email: map['email'] as String,
       fullName: map['full_name'] as String,
       phoneNumber: map['phone_number'] as String,
@@ -37,6 +37,21 @@ class UserDetailsModel {
   final Timestamp? dateJoined;
 
   Map<String, dynamic> toMap() {
+    final List<String> searchKeys = <String>[];
+    String currentKey = '';
+
+    fullName.split('').forEach((element) {
+      currentKey += element.toLowerCase();
+      searchKeys.add(currentKey);
+    });
+
+    currentKey = '';
+
+    fullName.split(' ').toList()[1].split('').forEach((element) {
+      currentKey += element.toLowerCase();
+      searchKeys.add(currentKey);
+    });
+
     return <String, dynamic>{
       'uid': uid,
       'email': email,
@@ -44,6 +59,7 @@ class UserDetailsModel {
       'phone_number': phoneNumber,
       'profile_pic_url': profilePicUrl,
       'date_joined': dateJoined,
+      'search_key': searchKeys,
     };
   }
 
@@ -75,5 +91,11 @@ class UserDetailsModel {
       profilePicUrl: profilePicUrl ?? this.profilePicUrl,
       dateJoined: dateJoined ?? this.dateJoined,
     );
+  }
+
+  @override
+  String toString() {
+    return 'UserDetailsModel(email: $email, fullName: $fullName, phoneNumber:'
+        ' $phoneNumber, profilePicUrl: $profilePicUrl, dateJoined: $dateJoined)';
   }
 }
