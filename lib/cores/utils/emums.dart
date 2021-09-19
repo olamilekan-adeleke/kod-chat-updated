@@ -12,3 +12,7 @@ enum SnackBarType { success, error, warning }
 
 /// payment type enum
 enum PaymentType { card, cash, transfer, none }
+
+
+/// message type enum
+enum MessageType { text, image, video, document }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:get/route_manager.dart';
 import 'package:kod_chat/cores/components/custom_text_widget.dart';
 import 'package:kod_chat/cores/constants/color.dart';
 import 'package:kod_chat/cores/utils/custom_sizer_utils.dart';
+import 'package:kod_chat/cores/utils/navigator_service.dart';
 import 'package:kod_chat/cores/utils/route_name.dart';
 
 class SearchBarWidegt extends StatelessWidget {
@@ -11,7 +11,7 @@ class SearchBarWidegt extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Get.toNamed(RouteName.searchHome),
+      onTap: () => NavigationService.navigateTo(RouteName.searchHome),
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: sizerSp(10)),
         height: sizerSp(30),

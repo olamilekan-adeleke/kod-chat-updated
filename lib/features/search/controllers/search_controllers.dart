@@ -3,7 +3,9 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kod_chat/cores/utils/emums.dart';
+import 'package:kod_chat/cores/utils/route_name.dart';
 import 'package:kod_chat/features/auth/model/user_details_model.dart';
+import 'package:kod_chat/features/chat/controllers/chat_controller.dart';
 import 'package:kod_chat/features/search/services/search_services.dart';
 
 class SearchController extends GetxController {
@@ -14,6 +16,7 @@ class SearchController extends GetxController {
       TextEditingController(text: "");
 
   final RxList<UserDetailsModel> searchResults = <UserDetailsModel>[].obs;
+  static final ChatController chatController = Get.find<ChatController>();
   UserDetailsModel? lastResult;
   String lastQuery = '';
   bool hasMore = true;
@@ -48,5 +51,10 @@ class SearchController extends GetxController {
           e.toString().replaceAll('[cloud_firestore/unavailable]', '');
       controllerState.value = ControllerState.error;
     }
+  }
+
+  void selectUser(UserDetailsModel userDetails) {
+    chatController.setSelecteduser = userDetails;
+    Get.toNamed(RouteName.chatHome);
   }
 }

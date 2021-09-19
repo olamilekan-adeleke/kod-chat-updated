@@ -9,5 +9,6 @@ class RouteName {
   static const String editProfileScreen = '/eidt-pofile';
   static const String notificationScreen = '/notification';
   static const String searchHome = '/search-home';
+  static const String chatHome = '/chat-home';
   
 }
