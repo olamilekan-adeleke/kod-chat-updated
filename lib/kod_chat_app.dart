@@ -9,6 +9,7 @@ import 'package:kod_chat/features/conversations/view/screens/converstion_screen.
 import 'package:sizer/sizer.dart';
 
 import 'features/auth/views/pages/wrapper.dart';
+import 'features/search/views/screens/search_home_screen.dart';
 
 class KodChatApp extends StatelessWidget {
   @override
@@ -16,12 +17,10 @@ class KodChatApp extends StatelessWidget {
     return Sizer(
       builder: (_, __, ___) => GetMaterialApp(
         title: 'Kod Chat',
-        theme: ThemeData(
-          primaryColor: kcPrimaryColor,
-          accentColor: kcPrimaryColorTwo,
-        ),
+        theme: ThemeData(primaryColor: kcPrimaryColor),
         home: WrapperScreen(),
         getPages: getPages(),
+        
       ),
     );
   }
@@ -33,5 +32,6 @@ List<GetPage<dynamic>>? getPages() {
     GetPage(name: RouteName.signup, page: () => SignupScreen()),
     GetPage(name: RouteName.forgotPassword, page: () => ForgotPasswordScreen()),
     GetPage(name: RouteName.home, page: () => ConversationScreen()),
+    GetPage(name: RouteName.searchHome, page: () => SearchHomeScreen()),
   ];
 }
