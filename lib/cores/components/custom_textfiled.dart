@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../cores/constants/color.dart';
-import '../../cores/utils/sizer_utils.dart';
+import '../utils/custom_sizer_utils.dart';
 
 class KodTextField extends StatefulWidget {
   const KodTextField({
@@ -9,20 +9,21 @@ class KodTextField extends StatefulWidget {
     this.textEditingController,
     this.autoCorrect = true,
     required this.hintText,
-    // required this.labelText,
     this.validator,
     this.textInputType = TextInputType.text,
     this.isPassword = false,
     this.maxLine = 1,
+    this.usePadding = true,
   }) : super(key: key);
 
   final TextEditingController? textEditingController;
   final bool autoCorrect;
   final String hintText;
-  // final String labelText;
+
   final String? Function(String?)? validator;
   final TextInputType textInputType;
   final bool isPassword;
+  final bool usePadding;
   final int? maxLine;
 
   @override
@@ -31,6 +32,7 @@ class KodTextField extends StatefulWidget {
 
 class _KodTextFieldState extends State<KodTextField> {
   final ValueNotifier<bool> obscureText = ValueNotifier<bool>(false);
+
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder<bool>(

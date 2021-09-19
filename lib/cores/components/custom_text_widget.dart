@@ -6,21 +6,21 @@ import '../../cores/constants/font_size.dart';
 
 Widget textWidget(
   String text, {
-  double? fontSize = kfsMeduim,
-  Color? textColor = kcTextColor,
+  double? size = kfsMeduim,
+  Color? color = kcTextColor,
   FontWeight? fontWeight = FontWeight.w400,
-  TextAlign? textAlign = TextAlign.justify,
+  TextAlign? align = TextAlign.justify,
   int? maxLines,
   TextOverflow? overflow,
 }) {
   return Text(
     text,
     style: GoogleFonts.blinker(
-      fontSize: fontSize,
-      color: textColor,
+      fontSize: size,
+      color: color,
       fontWeight: fontWeight,
     ),
-    textAlign: textAlign,
+    textAlign: align,
     overflow: overflow,
     softWrap: true,
     maxLines: maxLines,
