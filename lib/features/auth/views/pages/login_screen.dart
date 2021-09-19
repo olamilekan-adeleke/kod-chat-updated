@@ -7,7 +7,7 @@ import '../../../../cores/components/custom_textfiled.dart';
 import '../../../../cores/utils/emums.dart';
 import '../../../../cores/utils/navigator_service.dart';
 import '../../../../cores/utils/route_name.dart';
-import '../../../../cores/utils/sizer_utils.dart';
+import '../../../../cores/utils/custom_sizer_utils.dart';
 import '../../../../cores/utils/validator.dart';
 import '../../../../features/auth/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +31,7 @@ class LoginScreen extends StatelessWidget {
             textWidget(
               'Hey, \nLogin Now.',
               fontWeight: FontWeight.w700,
-              fontSize: sizerSp(30),
+              size: sizerSp(30),
             ),
             GestureDetector(
               onTap: () => NavigationService.navigateTo(RouteName.signup),
@@ -41,13 +41,13 @@ class LoginScreen extends StatelessWidget {
                   textWidget(
                     'Are you new here? ',
                     fontWeight: FontWeight.w200,
-                    fontSize: sizerSp(13),
+                    size: sizerSp(13),
                   ),
                   textWidget(
                     'Create Account',
                     fontWeight: FontWeight.w400,
-                    fontSize: sizerSp(13),
-                    textColor: kcPrimaryColorTwo,
+                    size: sizerSp(13),
+                    color: kcPrimaryColorTwo,
                   ),
                 ],
               ),
@@ -86,8 +86,8 @@ class LoginScreen extends StatelessWidget {
                   child: textWidget(
                     'Forgot Password?',
                     fontWeight: FontWeight.w400,
-                    fontSize: sizerSp(12),
-                    textColor: kcPrimaryColorTwo,
+                    size: sizerSp(12),
+                    color: kcPrimaryColorTwo,
                   ),
                 ),
               ],
@@ -95,7 +95,7 @@ class LoginScreen extends StatelessWidget {
             SizedBox(height: sizerSp(60)),
             Obx(() {
               if (loginControllers.controllerStateEnum ==
-                  ControllerStateEnum.busy) {
+                  ControllerState.busy) {
                 return const CustomButton.loading();
               }
               return CustomButton(

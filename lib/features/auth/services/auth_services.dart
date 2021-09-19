@@ -69,7 +69,9 @@ class AuthenticationRepo {
   ) async {
     final UserCredential userCredential =
         await _firebaseAuth.createUserWithEmailAndPassword(
-            email: userDetails.email, password: password);
+      email: userDetails.email,
+      password: password,
+    );
 
     final User? user = userCredential.user;
 

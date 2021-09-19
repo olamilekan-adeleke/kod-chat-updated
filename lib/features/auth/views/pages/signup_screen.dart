@@ -6,7 +6,7 @@ import '../../../../cores/components/custom_text_widget.dart';
 import '../../../../cores/components/custom_textfiled.dart';
 import '../../../../cores/utils/emums.dart';
 import '../../../../cores/utils/navigator_service.dart';
-import '../../../../cores/utils/sizer_utils.dart';
+import '../../../../cores/utils/custom_sizer_utils.dart';
 import '../../../../cores/utils/validator.dart';
 import '../../../../features/auth/controllers/register_controller.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +30,7 @@ class SignupScreen extends StatelessWidget {
           textWidget(
             'Create \nNew Account',
             fontWeight: FontWeight.w700,
-            fontSize: sizerSp(30),
+            size: sizerSp(30),
           ),
           GestureDetector(
             onTap: () => NavigationService.goBack(),
@@ -40,13 +40,13 @@ class SignupScreen extends StatelessWidget {
                 textWidget(
                   'Already have an account? ',
                   fontWeight: FontWeight.w200,
-                  fontSize: sizerSp(13),
+                  size: sizerSp(13),
                 ),
                 textWidget(
                   'Login',
                   fontWeight: FontWeight.w400,
-                  fontSize: sizerSp(13),
-                  textColor: kcPrimaryColorTwo,
+                  size: sizerSp(13),
+                  color: kcPrimaryColorTwo,
                 ),
               ],
             ),
@@ -106,7 +106,7 @@ class SignupScreen extends StatelessWidget {
           SizedBox(height: sizerSp(40)),
           Obx(() {
             if (registerController.controllerStateEnum ==
-                ControllerStateEnum.busy) {
+                ControllerState.busy) {
               return const CustomButton.loading();
             }
 

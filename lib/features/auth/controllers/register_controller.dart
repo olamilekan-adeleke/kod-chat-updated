@@ -2,8 +2,6 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:kod_chat/features/auth/model/user_details_model.dart';
-import 'package:uuid/uuid.dart';
-
 import '../../../cores/constants/error_text.dart';
 import '../../../cores/utils/emums.dart';
 import '../../../cores/utils/logger.dart';
@@ -16,8 +14,8 @@ import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:get/instance_manager.dart';
 
 class RegisterController extends GetxController {
-  final Rx<ControllerStateEnum> _controllerStateEnum =
-      ControllerStateEnum.init.obs;
+  final Rx<ControllerState> _controllerStateEnum =
+      ControllerState.init.obs;
   static final AuthenticationRepo _authenticationRepo =
       Get.find<AuthenticationRepo>();
   final TextEditingController firstnameController =
@@ -29,10 +27,10 @@ class RegisterController extends GetxController {
   final TextEditingController passwordController =
       TextEditingController(text: '');
 
-  ControllerStateEnum get controllerStateEnum => _controllerStateEnum.value;
+  ControllerState get controllerStateEnum => _controllerStateEnum.value;
 
   Future<void> registerUser() async {
-    _controllerStateEnum.value = ControllerStateEnum.busy;
+    _controllerStateEnum.value = ControllerState.busy;
 
     final UserDetailsModel user = UserDetailsModel(
       uid: '',
@@ -48,18 +46,18 @@ class RegisterController extends GetxController {
       await _authenticationRepo.registerUserWithEmailAndPassword(
           user, passwordController.text.trim());
 
-      _controllerStateEnum.value = ControllerStateEnum.success;
+      _controllerStateEnum.value = ControllerState.success;
       NavigationService.goBack();
       CustomSnackBarService.showSuccessSnackBar(
           'Success', 'Account Successfully Created!');
     } on SocketException {
-      _controllerStateEnum.value = ControllerStateEnum.error;
+      _controllerStateEnum.value = ControllerState.error;
       CustomSnackBarService.showErrorSnackBar(
           'Error', noInternetConnectionText);
     } catch (e, s) {
       errorLog('$e', 'Error siging up in user', title: 'sign up', trace: '$s');
 
-      _controllerStateEnum.value = ControllerStateEnum.error;
+      _controllerStateEnum.value = ControllerState.error;
       CustomSnackBarService.showErrorSnackBar('Error', e.toString());
     }
   }

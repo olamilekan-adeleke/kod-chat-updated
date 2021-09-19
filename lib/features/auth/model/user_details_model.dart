@@ -7,6 +7,7 @@ class UserDetailsModel {
     required this.uid,
     required this.email,
     required this.fullName,
+    this.bio,
     required this.phoneNumber,
     this.profilePicUrl,
     this.dateJoined,
@@ -18,6 +19,9 @@ class UserDetailsModel {
       email: map['email'] as String,
       fullName: map['full_name'] as String,
       phoneNumber: map['phone_number'] as String,
+      bio: map['bio'] == null
+          ? 'Hey there am ${map['full_name']}'
+          : map['bio'] as String,
       profilePicUrl: map['profile_pic_url'] != null
           ? map['profile_pic_url'] as String
           : null,
@@ -32,6 +36,7 @@ class UserDetailsModel {
   final String uid;
   final String email;
   final String fullName;
+  final String? bio;
   final String phoneNumber;
   final String? profilePicUrl;
   final Timestamp? dateJoined;
@@ -56,6 +61,7 @@ class UserDetailsModel {
       'uid': uid,
       'email': email,
       'full_name': fullName,
+      'bio': bio,
       'phone_number': phoneNumber,
       'profile_pic_url': profilePicUrl,
       'date_joined': dateJoined,
@@ -68,6 +74,7 @@ class UserDetailsModel {
       'uid': uid,
       'email': email,
       'full_name': fullName,
+      'bio': bio,
       'phone_number': phoneNumber,
       'profile_pic_url': profilePicUrl,
     };

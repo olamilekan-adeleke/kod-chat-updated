@@ -6,7 +6,7 @@ import '../../../../cores/components/custom_button.dart';
 import '../../../../cores/components/custom_text_widget.dart';
 import '../../../../cores/components/custom_textfiled.dart';
 import '../../../../cores/utils/emums.dart';
-import '../../../../cores/utils/sizer_utils.dart';
+import '../../../../cores/utils/custom_sizer_utils.dart';
 import '../../../../features/auth/controllers/forgot_password_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -59,13 +59,13 @@ class ForgotPasswordScreen extends StatelessWidget {
             textWidget(
               'Reset Password',
               fontWeight: FontWeight.w700,
-              fontSize: sizerSp(30),
+              size: sizerSp(30),
             ),
             textWidget(
               'Did You Forgot Your Password?\nEnter Your Email Below,'
               ' A Link Will Be Sent To That Email',
               fontWeight: FontWeight.w200,
-              fontSize: sizerSp(12),
+              size: sizerSp(12),
             ),
             SizedBox(height: sizerSp(20)),
             Center(
@@ -84,7 +84,7 @@ class ForgotPasswordScreen extends StatelessWidget {
             SizedBox(height: sizerSp(80)),
             Obx(() {
               if (forgotPasswordController.controllerStateEnum ==
-                  ControllerStateEnum.busy) {
+                  ControllerState.busy) {
                 return const CustomButton.loading();
               }
 
