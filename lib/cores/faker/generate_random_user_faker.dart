@@ -22,6 +22,7 @@ class GenerateRandomUserFaker {
       uid: faker.internet.random.numberOfLength(12),
       email: faker.internet.email(),
       fullName: faker.person.name(),
+      bio: faker.lorem.words(faker.randomGenerator.integer(50)).join(' '),
       phoneNumber: faker.phoneNumber.random.numberOfLength(11),
       dateJoined: Timestamp.now(),
       profilePicUrl: addImage
