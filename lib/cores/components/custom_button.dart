@@ -82,7 +82,7 @@ class CustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const double __defaultHeight = 50.0;
+    const double __defaultHeight = 52.0;
     final double __defaultWidth = MediaQuery.of(context).size.width * 0.95;
 
     Widget child;
@@ -100,8 +100,8 @@ class CustomButton extends StatelessWidget {
     } else {
       child = textWidget(
         text ?? 'no text',
-        textColor: textColor ?? Colors.white,
-        fontSize: textSize,
+        color: textColor ?? Colors.white,
+        size: textSize,
         fontWeight: textFontWeight,
       );
     }
