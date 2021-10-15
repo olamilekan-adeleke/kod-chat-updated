@@ -4,12 +4,13 @@ const admin = require("firebase-admin");
 admin.initializeApp();
 
 exports.onNewChatAdded = functions.database
-  .ref("chats/{chatId}")
+  .ref("chats/{chatId}/chat_room/{messages}")
   .onCreate(async (snaphot, context) => {
     functions.logger.log(snaphot);
     functions.logger.log(context);
 
-    const chatJustAdded = Object.values(snaphot.val())[0];
+    // const chatJustAdded = Object.values(snaphot.val())[0];
+    const chatJustAdded = snaphot.val();
     functions.logger.log(chatJustAdded);
 
     const roomId = chatJustAdded.room_id;
@@ -42,6 +43,7 @@ exports.onNewChatAdded = functions.database
     if (isFirstTime === false) {
       // update conversation document
       await updateConversation(conversationRoomId, chatJustAdded);
+      functions.logger.log(conversationRoomId);
     } else {
       // get receiver data
       const receiverData = await getUserData(receiverId);
@@ -62,7 +64,8 @@ exports.onNewChatAdded = functions.database
         },
       };
 
-      await createNewConversation(data);
+      await createNewConversation(data, conversationRoomId);
+      functions.logger.log(conversationRoomId);
     }
 
     return Promise.resolve();
@@ -111,9 +114,7 @@ async function updateConversation(docId, data) {
     });
 }
 
-async function createNewConversation(data) {
-  const id = uuidv4();
-
+async function createNewConversation(data, id) {
   return await admin
     .firestore()
     .collection("conversations")
