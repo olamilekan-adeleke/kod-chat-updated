@@ -41,7 +41,7 @@ exports.onNewChatAdded = functions.database
 
     if (isFirstTime === false) {
       // update conversation document
-      updateConversation(conversationRoomId, chatJustAdded);
+      await updateConversation(conversationRoomId, chatJustAdded);
     } else {
       // get receiver data
       const receiverData = await getUserData(receiverId);
