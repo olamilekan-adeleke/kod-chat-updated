@@ -14,7 +14,7 @@ class ChatService {
     // roomId = "a631c610-19a9-11ec-bd0b-f565711c8cc9";
     final String chatRoomId = roomId ?? Uuid().v1();
 
-    await chatCollectionRef.child(chatRoomId).push().set({
+    await chatCollectionRef.child(chatRoomId).child('chat_room').push().set({
       "room_id": roomId,
       "conversation_room_id": conversationRoomId,
       ...chat.toMap(),

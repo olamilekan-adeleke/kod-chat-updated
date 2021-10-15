@@ -31,9 +31,9 @@ PreferredSize chatHomeAppBar() {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(100),
               child: KodImageWidget(
-                imageUrl: chatController.getSelecteduser?.profilePicUrl ?? '',
+                imageUrl: chatController.getSelectedUser?.profilePicUrl ?? '',
                 imageTypes:
-                    chatController.getSelecteduser?.profilePicUrl == null
+                    chatController.getSelectedUser?.profilePicUrl == null
                         ? ImageTypes.none
                         : ImageTypes.network,
               ),
@@ -44,7 +44,7 @@ PreferredSize chatHomeAppBar() {
       elevation: 2.0,
       leadingWidth: sizerSp(50),
       title: textWidget(
-        chatController.getSelecteduser?.fullName ?? '',
+        chatController.getSelectedUser?.fullName ?? '',
         fontWeight: FontWeight.w600,
         size: sizerSp(16),
         color: white,

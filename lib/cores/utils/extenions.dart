@@ -2,7 +2,7 @@ import 'package:kod_chat/cores/utils/emums.dart';
 
 /// extension for the message eumn
 class MessageTypeExtention {
-  static String eumnToString(MessageType messageType) {
+  static String enumToString(MessageType messageType) {
     switch (messageType) {
       case MessageType.text:
         return 'text';

@@ -24,7 +24,7 @@ class SearchController extends GetxController {
   final RxString errorMessage = ''.obs;
 
   Future<void> searchByQuery({bool ignoreRepeat = true}) async {
-    final String query = searchTextEditingController.text.trim();
+    final String query = searchTextEditingController.text.trim().toLowerCase();
 
     if (query.isEmpty) return;
 
@@ -54,7 +54,7 @@ class SearchController extends GetxController {
   }
 
   void selectUser(UserDetailsModel userDetails) {
-    chatController.setSelecteduser = userDetails;
+    chatController.setSelectedUser(userDetails);
     Get.toNamed(RouteName.chatHome);
   }
 }

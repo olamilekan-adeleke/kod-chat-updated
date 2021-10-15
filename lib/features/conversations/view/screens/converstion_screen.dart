@@ -27,7 +27,7 @@ class ConversationScreen extends StatelessWidget {
             ),
           ),
           SizedBox(height: sizerSp(10)),
-          SearchBarWidegt(),
+          SearchBarWidget(),
           SizedBox(height: sizerSp(10)),
           ConversationListWidget(),
         ],

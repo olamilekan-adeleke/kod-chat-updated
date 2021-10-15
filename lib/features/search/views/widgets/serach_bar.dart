@@ -5,8 +5,8 @@ import 'package:kod_chat/cores/utils/custom_sizer_utils.dart';
 import 'package:kod_chat/cores/utils/navigator_service.dart';
 import 'package:kod_chat/cores/utils/route_name.dart';
 
-class SearchBarWidegt extends StatelessWidget {
-  const SearchBarWidegt({Key? key}) : super(key: key);
+class SearchBarWidget extends StatelessWidget {
+  const SearchBarWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

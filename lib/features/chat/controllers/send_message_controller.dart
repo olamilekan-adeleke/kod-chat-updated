@@ -1,4 +1,3 @@
-import 'package:firebase_database/firebase_database.dart';
 import 'package:get/get.dart';
 import 'package:kod_chat/cores/utils/emums.dart';
 import 'package:kod_chat/cores/utils/local_database_controller.dart';
@@ -16,6 +15,7 @@ class SendMessageController extends GetxController {
     required String receiverId,
     String? conversationRoomId,
     String? roomId,
+    bool isFirstTime = false,
   }) async {
     final UserDetailsModel? user = localDatabaseController.user.value;
 
@@ -24,6 +24,7 @@ class SendMessageController extends GetxController {
       type: MessageType.text,
       senderId: user!.uid,
       receiverId: receiverId,
+      isFirstTime: isFirstTime,
     );
 
     await chatService.addMessageToChatRoom(

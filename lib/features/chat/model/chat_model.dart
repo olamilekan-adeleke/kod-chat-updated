@@ -11,6 +11,7 @@ class ChatModel {
     required this.receiverId,
     this.timestamp,
     this.mediaLink,
+    this.isFirstTime,
   });
 
   final String message;
@@ -19,15 +20,17 @@ class ChatModel {
   final List<String>? mediaLink;
   final String senderId;
   final String receiverId;
+  final bool? isFirstTime;
 
   Map<String, dynamic> toMap() {
     return {
       'message': message,
-      'type': MessageTypeExtention.eumnToString(type),
+      'type': MessageTypeExtention.enumToString(type),
       'timestamp': ServerValue.timestamp,
       'media_link': mediaLink,
       'sender_id': senderId,
       'receiver_id': receiverId,
+      'is_first_time': isFirstTime,
     };
   }
 
@@ -39,6 +42,7 @@ class ChatModel {
       mediaLink: List<String>.from(map['media_link']),
       senderId: map['sender_id'],
       receiverId: map['receiver_id'],
+      isFirstTime: map['is_first_time'],
     );
   }
 
