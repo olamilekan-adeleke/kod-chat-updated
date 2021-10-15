@@ -1,4 +1,5 @@
 const functions = require("firebase-functions");
+const { v4: uuidv4 } = require("uuid");
 const admin = require("firebase-admin");
 admin.initializeApp();
 
@@ -13,8 +14,9 @@ exports.onNewChatAdded = functions.database
 
     const roomId = chatJustAdded.room_id;
     const conversationRoomId = chatJustAdded.conversation_room_id;
+    const isFirstTime = chatJustAdded.is_first_time;
     const senderId = chatJustAdded.sender_id;
-    const receiverid = chatJustAdded.receiver_id;
+    const receiverId = chatJustAdded.receiver_id;
     const timestamp = chatJustAdded.timestamp;
     const message = chatJustAdded.message;
 
@@ -22,39 +24,45 @@ exports.onNewChatAdded = functions.database
       roomId,
       conversationRoomId,
       senderId,
-      receiverid,
+      receiverId,
       timestamp
     );
 
-    if (roomId !== undefined && conversationRoomId !== undefined) {
-      updataConversation(conversationRoomId);
+    // get sender info
+    const senderData = await getUserData(senderId);
+    functions.logger.log(senderData);
+
+    // send notification to user
+    await sendNotificationToUser(
+      receiverId,
+      senderData.data().full_name,
+      message
+    );
+
+    if (isFirstTime === false) {
+      // update conversation document
+      updateConversation(conversationRoomId, chatJustAdded);
     } else {
-      const senderData = await getUserData(senderId);
-      functions.logger.log(senderData);
-      const receiverData = await getUserData(receiverid);
+      // get receiver data
+      const receiverData = await getUserData(receiverId);
       functions.logger.log(receiverData);
 
       const data = {
         last_message: chatJustAdded,
         timestamp: timestamp,
-        members: [senderId, receiverid],
+        members: [senderId, receiverId],
         chat_room_id: context.params.chatId,
         [senderId]: {
           full_name: senderData.data().full_name,
           profile_pic_url: senderData.data().profile_pic_url,
         },
-        [receiverid]: {
+        [receiverId]: {
           full_name: receiverData.data().full_name,
           profile_pic_url: receiverData.data().profile_pic_url,
         },
       };
-      await createNewConversation(data);
 
-      await sendNotificationToUser(
-        receiverid,
-        senderData.data().full_name,
-        message
-      );
+      await createNewConversation(data);
     }
 
     return Promise.resolve();
@@ -69,6 +77,7 @@ async function sendNotificationToUser(userId, senderName, message) {
     data: {
       data_to_send: "msg_from_the_cloud",
       click_action: "FLUTTER_NOTIFICATION_CLICK",
+      // TODO: add user image url
     },
   };
 
@@ -81,8 +90,8 @@ async function sendNotificationToUser(userId, senderName, message) {
     .messaging()
     .sendToTopic(`${userId}`, payload, options)
     .then(() => {
-      console.info("function executed succesfully: sent notification");
-      // return {msg: "function executed succesfully"};
+      console.info("function executed successfully: sent notification");
+      // return {msg: "function executed successfully"};
     })
     .catch((error) => {
       console.info("error in execution: notification not sent");
@@ -91,7 +100,7 @@ async function sendNotificationToUser(userId, senderName, message) {
     });
 }
 
-async function updataConversation(docId, data) {
+async function updateConversation(docId, data) {
   return await admin
     .firestore()
     .collection("conversations")
@@ -103,7 +112,16 @@ async function updataConversation(docId, data) {
 }
 
 async function createNewConversation(data) {
-  return await admin.firestore().collection("conversations").add(data);
+  const id = uuidv4();
+
+  return await admin
+    .firestore()
+    .collection("conversations")
+    .doc(id)
+    .set({
+      conversation_room_id: id,
+      ...data,
+    });
 }
 
 async function getUserData(id) {
