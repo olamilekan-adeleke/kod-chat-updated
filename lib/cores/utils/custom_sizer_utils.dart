@@ -1,9 +1,9 @@
 import 'package:sizer/sizer.dart';
 
-/// return a percentage of thr screen height in respest to the  value given
+/// return a percentage of thr screen height in respect to the  value given
 double sizerHeight(double value) => value.h;
 
-/// return a percentage of thr screen width in respest to the  value given
+/// return a percentage of thr screen width in respect to the  value given
 double sizerWidth(double value) => value.w;
 
 
