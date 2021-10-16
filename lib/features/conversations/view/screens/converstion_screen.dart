@@ -13,8 +13,8 @@ class ConversationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return scaffold(
-      body: ListView(
-        // crossAxisAlignment: CrossAxisAlignment.start,
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           SizedBox(height: sizerSp(20)),
           GestureDetector(
@@ -29,7 +29,7 @@ class ConversationScreen extends StatelessWidget {
           SizedBox(height: sizerSp(10)),
           SearchBarWidget(),
           SizedBox(height: sizerSp(10)),
-          ConversationListWidget(),
+          Expanded(child: ConversationListWidget()),
         ],
       ),
     );
