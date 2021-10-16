@@ -39,6 +39,8 @@ class ChatController extends GetxController {
   Future<void> sendMessage() async {
     final String text = textEditingController.text.trim();
 
+    if (text.isEmpty) return;
+
     if (conversationRoomId.isEmpty || chatRoomId.isEmpty) {
       // create room and conversation doc id
       final String _roomId = uuid.v1();

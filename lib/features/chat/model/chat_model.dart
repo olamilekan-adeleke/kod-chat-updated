@@ -26,7 +26,7 @@ class ChatModel {
     return {
       'message': message,
       'type': MessageTypeExtention.enumToString(type),
-      'timestamp': ServerValue.timestamp,
+      'timestamp': timestamp ?? ServerValue.timestamp,
       'media_link': mediaLink,
       'sender_id': senderId,
       'receiver_id': receiverId,
@@ -39,7 +39,9 @@ class ChatModel {
       message: map['message'],
       type: MessageTypeExtention.stringToEunm(map['type']),
       timestamp: map['timestamp'],
-      mediaLink: List<String>.from(map['media_link']),
+      mediaLink: map['media_link'] != null
+          ? List<String>.from(map['media_link'])
+          : null,
       senderId: map['sender_id'],
       receiverId: map['receiver_id'],
       isFirstTime: map['is_first_time'],
