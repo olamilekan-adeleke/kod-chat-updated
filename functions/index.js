@@ -42,7 +42,7 @@ exports.onNewChatAdded = functions.database
 
     if (isFirstTime === false) {
       // update conversation document
-      await updateConversation(conversationRoomId, chatJustAdded);
+      await updateConversation(conversationRoomId, chatJustAdded, timestamp);
       functions.logger.log(conversationRoomId);
     } else {
       // get receiver data
@@ -103,14 +103,14 @@ async function sendNotificationToUser(userId, senderName, message) {
     });
 }
 
-async function updateConversation(docId, data) {
+async function updateConversation(docId, data, timestamp) {
   return await admin
     .firestore()
     .collection("conversations")
     .doc(`${docId}`)
     .update({
       last_message: data,
-      timestamp: admin.firestore.Timestamp.now(),
+      timestamp: timestamp,
     });
 }
 
