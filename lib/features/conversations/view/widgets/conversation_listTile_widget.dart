@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/instance_manager.dart';
 import 'package:kod_chat/cores/components/custom_text_widget.dart';
 import 'package:kod_chat/cores/components/image_widget.dart';
 import 'package:kod_chat/cores/constants/color.dart';
 import 'package:kod_chat/cores/utils/custom_sizer_utils.dart';
 import 'package:kod_chat/cores/utils/emums.dart';
+import 'package:kod_chat/cores/utils/navigator_service.dart';
+import 'package:kod_chat/cores/utils/route_name.dart';
 import 'package:kod_chat/cores/utils/time_ago.dart';
+import 'package:kod_chat/features/chat/controllers/chat_controller.dart';
 import 'package:kod_chat/features/conversations/model/conversation_model.dart';
 
 class ConversationListTileWidget extends StatelessWidget {
@@ -14,11 +18,19 @@ class ConversationListTileWidget extends StatelessWidget {
   }) : super(key: key);
 
   final ConversationModel conversation;
+  static final ChatController chatController = Get.find<ChatController>();
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => {},
+      onTap: () {
+        chatController.setSelectedUser(
+          conversation.userChattingWith,
+          selectedChatRoomId: conversation.chatRoomId,
+          selectedConversationRoomId: conversation.conversationRoomId,
+        );
+        NavigationService.navigateTo(RouteName.chatHome);
+      },
       child: Container(
         height: sizerSp(45),
         margin: EdgeInsets.symmetric(vertical: sizerSp(2)),

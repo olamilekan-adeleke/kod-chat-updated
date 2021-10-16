@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:get/instance_manager.dart';
 import 'package:kod_chat/features/auth/model/user_details_model.dart';
@@ -15,12 +16,14 @@ class ConversationModel {
     required this.members,
     required this.chatRoomId,
     required this.userChattingWith,
+    required this.conversationRoomId,
   });
 
   final ChatModel lastMessage;
   final int timestamp;
   final List<String> members;
   final String chatRoomId;
+  final String conversationRoomId;
   final UserDetailsModel userChattingWith;
 
   Map<String, dynamic> toMap() {
@@ -29,6 +32,7 @@ class ConversationModel {
       'timestamp': timestamp,
       'members': members,
       'chat_room_id': chatRoomId,
+      'conversation_room_id': conversationRoomId,
       'user_chatting_with': userChattingWith.toMap(),
     };
   }
@@ -53,6 +57,7 @@ class ConversationModel {
       timestamp: map['timestamp'] as int,
       members: List<String>.from(map['members']),
       chatRoomId: map['chat_room_id'],
+      conversationRoomId: map['conversation_room_id'],
       userChattingWith: user,
     );
   }
