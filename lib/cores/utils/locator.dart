@@ -1,4 +1,5 @@
 import 'package:kod_chat/features/chat/bindings/chat_binding.dart';
+import 'package:kod_chat/features/conversations/bindings/conversation_binding.dart';
 import 'package:kod_chat/features/search/binding/binding.dart';
 
 import '../../../features/auth/binding/auth_binding.dart';
@@ -8,4 +9,5 @@ void setUpLocator() {
   AuthenticationBinding().dependencies();
   SearchBinding().dependencies();
   ChatBinding().dependencies();
+  ConversationBinding().dependencies();
 }
