@@ -18,17 +18,28 @@ class CustomShimmerWidget extends StatelessWidget {
   }
 }
 
-Widget shimmerRound({double? height, double? width}) {
+Widget shimmerRectangle({double? height, double? width}) {
   return Shimmer.fromColors(
     baseColor: Colors.grey.shade300,
     highlightColor: Colors.grey.shade50,
     child: Container(
       height: height ?? sizerSp(40),
-      width: width ?? sizerSp(40),
-      decoration: BoxDecoration(
-        shape:BoxShape.circle,
-        color: kcGrey100,
-      )
+      width: width ?? double.infinity,
+      decoration: BoxDecoration(color: kcGrey100),
     ),
+  );
+}
+
+Widget shimmerRound({double? height, double? width}) {
+  return Shimmer.fromColors(
+    baseColor: Colors.grey.shade300,
+    highlightColor: Colors.grey.shade50,
+    child: Container(
+        height: height ?? sizerSp(40),
+        width: width ?? sizerSp(40),
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: kcGrey100,
+        )),
   );
 }
