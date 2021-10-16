@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 Widget scaffold({required body, appBar, usePadding = true}) {
   return Container(
     child: SafeArea(
-      
       child: Scaffold(
         appBar: appBar,
         backgroundColor: Colors.white,
