@@ -1,5 +1,5 @@
 /// controller State
-enum ControllerStateEnum { busy, error, success, init }
+enum ControllerState { busy, error, success, init }
 
 /// Ayuth state enum
 enum AuthStateEnum { loggedIn, loggedOut }
@@ -12,3 +12,7 @@ enum SnackBarType { success, error, warning }
 
 /// payment type enum
 enum PaymentType { card, cash, transfer, none }
+
+
+/// message type enum
+enum MessageType { text, image, video, document }

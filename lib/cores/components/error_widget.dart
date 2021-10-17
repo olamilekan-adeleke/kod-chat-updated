@@ -17,7 +17,7 @@ class KodErrorWidget extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        textWidget( message),
+        textWidget(message, align: TextAlign.center),
         const SizedBox(height: 10.0),
         RetryButtonWidget(callback: () => callback!.call()),
       ],
