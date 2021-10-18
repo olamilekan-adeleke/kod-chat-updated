@@ -5,9 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kod_chat/cores/utils/emums.dart';
 import 'package:kod_chat/cores/utils/snack_bar_service.dart';
+import 'package:kod_chat/features/auth/services/auth_services.dart';
 import 'package:kod_chat/features/conversations/model/conversation_model.dart';
 
 class ConversationController extends GetxController {
+  static final AuthenticationRepo authenticationRepo =
+      Get.find<AuthenticationRepo>();
   final Rx<ControllerState> controllerState = ControllerState.init.obs;
   late final ScrollController scrollController = ScrollController();
   static const int limit = 10;
@@ -36,8 +39,13 @@ class ConversationController extends GetxController {
 
     try {
       controllerState.value = ControllerState.busy;
-      Query userQuery =
-          conversationCollectionRef.orderBy('timestamp', descending: true).limit(limit);
+      Query userQuery = conversationCollectionRef
+          .where(
+            'members',
+            arrayContains: authenticationRepo.getUserUid() ?? '',
+          )
+          .orderBy('timestamp', descending: true)
+          .limit(limit);
 
       if (_lastDocument != null) {
         userQuery = userQuery.startAfter([_lastDocument!['timestamp']]);

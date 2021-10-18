@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kod_chat/cores/utils/emums.dart';
+import 'package:kod_chat/cores/utils/navigator_service.dart';
 import 'package:kod_chat/cores/utils/route_name.dart';
 import 'package:kod_chat/features/auth/model/user_details_model.dart';
 import 'package:kod_chat/features/chat/controllers/chat_controller.dart';
@@ -55,6 +56,6 @@ class SearchController extends GetxController {
 
   void selectUser(UserDetailsModel userDetails) {
     chatController.setSelectedUser(userDetails);
-    Get.toNamed(RouteName.chatHome);
+    NavigationService.navigateTo(RouteName.chatHome);
   }
 }

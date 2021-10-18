@@ -15,7 +15,7 @@ class ChatController extends GetxController {
       Get.find<SendMessageController>();
 
   UserDetailsModel? get getSelectedUser {
-    if (_selectedUser.value.email.isEmpty) return null;
+    if (_selectedUser.value.uid.isEmpty) return null;
 
     return _selectedUser.value;
   }

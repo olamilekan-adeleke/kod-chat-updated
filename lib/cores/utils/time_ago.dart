@@ -31,7 +31,7 @@ String displayTimeAgo(
   } else if (difference.inMinutes >= 1) {
     return (numericDates) ? '1 mins ago' : 'A mins ago';
   } else if (difference.inSeconds >= 3) {
-    return '${difference.inSeconds} seconds ago';
+    return '${difference.inSeconds} Just now';
   } else {
     return 'Just now';
   }
