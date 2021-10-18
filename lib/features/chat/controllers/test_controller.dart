@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 class TestController extends GetxController {
   late final ScrollController scrollController = ScrollController();
   static const int limit = 10;
-  static final chatCollectionRef =
+  static final DatabaseReference chatCollectionRef =
       FirebaseDatabase.instance.reference().child('users');
   final RxList<Map> users = <Map>[].obs;
   final List<List<Map>> _allPagesList = <List<Map>>[];
