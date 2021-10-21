@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:kod_chat/features/auth/model/user_details_model.dart';
+import '../../auth/model/user_details_model.dart';
 
 class SearchService {
   final int limit = 15;

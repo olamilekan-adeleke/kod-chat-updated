@@ -1,6 +1,6 @@
-import 'package:kod_chat/cores/components/custom_scaffold_widget.dart';
-import 'package:kod_chat/cores/constants/color.dart';
-import 'package:kod_chat/cores/utils/navigator_service.dart';
+import '../../../../cores/components/custom_scaffold_widget.dart';
+import '../../../../cores/constants/color.dart';
+import '../../../../cores/utils/navigator_service.dart';
 
 import '../../../../cores/components/custom_button.dart';
 import '../../../../cores/components/custom_text_widget.dart';

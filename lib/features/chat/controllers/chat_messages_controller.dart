@@ -3,9 +3,9 @@ import 'dart:developer';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:kod_chat/cores/utils/emums.dart';
-import 'package:kod_chat/features/chat/controllers/chat_controller.dart';
-import 'package:kod_chat/features/chat/model/chat_model.dart';
+import '../../../cores/utils/emums.dart';
+import 'chat_controller.dart';
+import '../model/chat_model.dart';
 
 class ChatMessagesController extends GetxController {
   static const int limit = 15;

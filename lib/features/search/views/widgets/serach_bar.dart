@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:kod_chat/cores/components/custom_text_widget.dart';
-import 'package:kod_chat/cores/constants/color.dart';
-import 'package:kod_chat/cores/utils/custom_sizer_utils.dart';
-import 'package:kod_chat/cores/utils/navigator_service.dart';
-import 'package:kod_chat/cores/utils/route_name.dart';
+import '../../../../cores/components/custom_text_widget.dart';
+import '../../../../cores/constants/color.dart';
+import '../../../../cores/utils/custom_sizer_utils.dart';
+import '../../../../cores/utils/navigator_service.dart';
+import '../../../../cores/utils/route_name.dart';
 
 class SearchBarWidget extends StatelessWidget {
   const SearchBarWidget({Key? key}) : super(key: key);

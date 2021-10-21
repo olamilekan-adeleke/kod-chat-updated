@@ -2,9 +2,9 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:kod_chat/cores/utils/snack_bar_service.dart';
-import 'package:kod_chat/features/auth/model/user_details_model.dart';
-import 'package:kod_chat/features/chat/controllers/send_message_controller.dart';
+import '../../../cores/utils/snack_bar_service.dart';
+import '../../auth/model/user_details_model.dart';
+import 'send_message_controller.dart';
 import 'package:uuid/uuid.dart';
 
 class ChatController extends GetxController {

@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:kod_chat/features/chat/model/chat_model.dart';
+import '../model/chat_model.dart';
 import 'package:uuid/uuid.dart';
 
 class ChatService {

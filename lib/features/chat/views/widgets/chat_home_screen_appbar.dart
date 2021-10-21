@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:kod_chat/cores/components/custom_text_widget.dart';
-import 'package:kod_chat/cores/components/image_widget.dart';
-import 'package:kod_chat/cores/constants/color.dart';
-import 'package:kod_chat/cores/utils/custom_sizer_utils.dart';
+import '../../../../cores/components/custom_text_widget.dart';
+import '../../../../cores/components/image_widget.dart';
+import '../../../../cores/constants/color.dart';
+import '../../../../cores/utils/custom_sizer_utils.dart';
 import 'package:kod_chat/cores/utils/emums.dart';
 import 'package:kod_chat/cores/utils/navigator_service.dart';
 import 'package:kod_chat/features/chat/controllers/chat_controller.dart';

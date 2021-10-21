@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/instance_manager.dart';
-import 'package:kod_chat/cores/utils/local_database_controller.dart';
+import '../../../cores/utils/local_database_controller.dart';
 import '../../../cores/utils/firebase_messaging_utils.dart';
 import '../../../cores/utils/logger.dart';
 import '../../../features/auth/model/login_user_model.dart';

@@ -2,9 +2,9 @@ import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:kod_chat/cores/components/shimmer_widget.dart';
-import 'package:kod_chat/cores/constants/color.dart';
-import 'package:kod_chat/cores/utils/custom_sizer_utils.dart';
+import 'shimmer_widget.dart';
+import '../constants/color.dart';
+import '../utils/custom_sizer_utils.dart';
 import '../../cores/utils/emums.dart';
 
 class KodImageWidget extends StatelessWidget {

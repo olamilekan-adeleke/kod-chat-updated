@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:kod_chat/features/auth/model/user_details_model.dart';
+import '../model/user_details_model.dart';
 import '../../../cores/constants/error_text.dart';
 import '../../../cores/utils/emums.dart';
 import '../../../cores/utils/logger.dart';

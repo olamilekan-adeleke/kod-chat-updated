@@ -1,4 +1,4 @@
-import 'package:kod_chat/cores/utils/local_database_controller.dart';
+import '../../../cores/utils/local_database_controller.dart';
 
 
 import '../../../features/auth/controllers/auth_state_controller.dart';

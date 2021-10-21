@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:kod_chat/cores/constants/color.dart';
-import 'package:kod_chat/cores/utils/custom_sizer_utils.dart';
+import '../constants/color.dart';
+import '../utils/custom_sizer_utils.dart';
 
 Widget searchTextField({
   required TextEditingController textEditingController,

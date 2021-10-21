@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
-import 'package:kod_chat/cores/utils/emums.dart';
-import 'package:kod_chat/cores/utils/local_database_controller.dart';
-import 'package:kod_chat/features/auth/model/user_details_model.dart';
-import 'package:kod_chat/features/chat/model/chat_model.dart';
+import '../../../cores/utils/emums.dart';
+import '../../../cores/utils/local_database_controller.dart';
+import '../../auth/model/user_details_model.dart';
+import '../model/chat_model.dart';
 import 'package:kod_chat/features/chat/services/chat_service.dart';
 
 class SendMessageController extends GetxController {

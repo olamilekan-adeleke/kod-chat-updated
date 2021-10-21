@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:kod_chat/features/chat/controllers/chat_controller.dart';
+import '../controllers/chat_controller.dart';
 // import 'package:kod_chat/features/chat/controllers/chat_messages_controller.dart';
 import 'package:kod_chat/features/chat/controllers/send_message_controller.dart';
 import 'package:kod_chat/features/chat/controllers/test_controller.dart';

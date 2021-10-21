@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:kod_chat/cores/components/custom_scaffold_widget.dart';
-import 'package:kod_chat/cores/components/custom_text_widget.dart';
-import 'package:kod_chat/cores/constants/color.dart';
-import 'package:kod_chat/cores/utils/custom_sizer_utils.dart';
-import 'package:kod_chat/features/auth/services/auth_services.dart';
-import 'package:kod_chat/features/conversations/view/widgets/conversation_list_widget.dart';
-import 'package:kod_chat/features/search/views/widgets/serach_bar.dart';
+import '../../../../cores/components/custom_scaffold_widget.dart';
+import '../../../../cores/components/custom_text_widget.dart';
+import '../../../../cores/constants/color.dart';
+import '../../../../cores/utils/custom_sizer_utils.dart';
+import '../../../auth/services/auth_services.dart';
+import '../widgets/conversation_list_widget.dart';
+import '../../../search/views/widgets/serach_bar.dart';
 
 class ConversationScreen extends StatelessWidget {
   const ConversationScreen();

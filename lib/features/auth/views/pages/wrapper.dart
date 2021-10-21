@@ -1,5 +1,5 @@
-import 'package:kod_chat/cores/utils/local_database_controller.dart';
-import 'package:kod_chat/features/conversations/view/screens/converstion_screen.dart';
+import '../../../../cores/utils/local_database_controller.dart';
+import '../../../conversations/view/screens/converstion_screen.dart';
 
 import '../../../../cores/utils/emums.dart';
 import '../../../../features/auth/controllers/auth_state_controller.dart';

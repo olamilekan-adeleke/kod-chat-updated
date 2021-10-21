@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:kod_chat/cores/components/custom_circular_progress_indicator.dart';
+import '../../../../cores/components/custom_circular_progress_indicator.dart';
 import 'package:kod_chat/cores/components/custom_scaffold_widget.dart';
 import 'package:kod_chat/cores/components/search_text_field.dart';
 import 'package:kod_chat/cores/utils/custom_sizer_utils.dart';

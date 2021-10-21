@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:kod_chat/cores/constants/color.dart';
-import 'package:kod_chat/cores/utils/emums.dart';
-import 'package:kod_chat/features/auth/model/user_details_model.dart';
-import 'package:kod_chat/features/search/controllers/search_controllers.dart';
-import 'package:kod_chat/features/search/views/widgets/empty_search_widget.dart';
-import 'package:kod_chat/features/search/views/widgets/search_item_widget.dart';
+import '../../../../cores/constants/color.dart';
+import '../../../../cores/utils/emums.dart';
+import '../../../auth/model/user_details_model.dart';
+import '../../controllers/search_controllers.dart';
+import 'empty_search_widget.dart';
+import 'search_item_widget.dart';
 
 class SearchResultListWidget extends StatefulWidget {
   const SearchResultListWidget({Key? key}) : super(key: key);

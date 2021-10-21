@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:kod_chat/cores/components/custom_text_widget.dart';
-import 'package:kod_chat/cores/utils/custom_sizer_utils.dart';
-import 'package:kod_chat/features/chat/controllers/chat_messages_controller.dart';
+import '../../../../cores/components/custom_text_widget.dart';
+import '../../../../cores/utils/custom_sizer_utils.dart';
+import '../../controllers/chat_messages_controller.dart';
 import 'package:kod_chat/features/chat/model/chat_model.dart';
 
 class ChatBodyWidget extends StatelessWidget {

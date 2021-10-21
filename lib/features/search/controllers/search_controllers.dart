@@ -2,10 +2,10 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:kod_chat/cores/utils/emums.dart';
-import 'package:kod_chat/cores/utils/navigator_service.dart';
-import 'package:kod_chat/cores/utils/route_name.dart';
-import 'package:kod_chat/features/auth/model/user_details_model.dart';
+import '../../../cores/utils/emums.dart';
+import '../../../cores/utils/navigator_service.dart';
+import '../../../cores/utils/route_name.dart';
+import '../../auth/model/user_details_model.dart';
 import 'package:kod_chat/features/chat/controllers/chat_controller.dart';
 import 'package:kod_chat/features/search/services/search_services.dart';
 

@@ -1,4 +1,4 @@
-import 'package:kod_chat/cores/constants/color.dart';
+import '../../../../cores/constants/color.dart';
 
 import '../../../../cores/components/custom_button.dart';
 import '../../../../cores/components/custom_scaffold_widget.dart';

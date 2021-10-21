@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:kod_chat/cores/utils/emums.dart';
-import 'package:kod_chat/cores/utils/extenions.dart';
+import '../../../cores/utils/emums.dart';
+import '../../../cores/utils/extenions.dart';
 
 class ChatModel {
   ChatModel({
