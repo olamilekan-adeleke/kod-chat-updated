@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:firebase_database/firebase_database.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:kod_chat/cores/utils/emums.dart';
 import 'package:kod_chat/cores/utils/extenions.dart';
 
@@ -26,7 +26,7 @@ class ChatModel {
     return {
       'message': message,
       'type': MessageTypeExtention.enumToString(type),
-      'timestamp': timestamp ?? ServerValue.timestamp,
+      'timestamp': timestamp ?? Timestamp.now().millisecondsSinceEpoch,
       'media_link': mediaLink,
       'sender_id': senderId,
       'receiver_id': receiverId,

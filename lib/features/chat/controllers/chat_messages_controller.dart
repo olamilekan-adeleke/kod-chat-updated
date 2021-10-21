@@ -86,7 +86,7 @@ class ChatMessagesController extends GetxController {
 
   @override
   void onInit() {
-    getMessages();
+    // getMessages();
     onInit();
     super.onInit();
   }

@@ -9,19 +9,23 @@ class ChatBodyWidget extends StatelessWidget {
   const ChatBodyWidget({Key? key}) : super(key: key);
 
   static final ChatMessagesController _chatMessagesController =
-      Get.find<ChatMessagesController>();
+      Get.put<ChatMessagesController>(ChatMessagesController());
 
   @override
   Widget build(BuildContext context) {
-    return Scrollbar(
-      child: ListView.builder(
-        padding: EdgeInsets.symmetric(horizontal: sizerSp(10.0)),
-        itemCount: _chatMessagesController.chats.length,
-        itemBuilder: (_, int index) {
-          final ChatModel chat = _chatMessagesController.chats[index];
-          return textWidget(chat.message);
-        },
-      ),
+    return GetBuilder<ChatMessagesController>(
+      builder: (chatMessagesController) {
+        return Scrollbar(
+          child: ListView.builder(
+            padding: EdgeInsets.symmetric(horizontal: sizerSp(10.0)),
+            itemCount: chatMessagesController.chats.length,
+            itemBuilder: (_, int index) {
+              final ChatModel chat = chatMessagesController.chats[index];
+              return textWidget(chat.message);
+            },
+          ),
+        );
+      },
     );
   }
 }
