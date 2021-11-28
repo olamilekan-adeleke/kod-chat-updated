@@ -37,7 +37,7 @@ class ChatMessagesController extends GetxController {
     Query chatQuery = chatCollectionRef
         .child(chatRoomId)
         .child('chat_room')
-        .orderByChild('timestamp:')
+        .orderByChild('timestamp')
         .limitToFirst(limit);
 
     if (_lastDocument != null) {
@@ -47,7 +47,7 @@ class ChatMessagesController extends GetxController {
     final int currentPageIndex = _allPagesList.length;
 
     chatQuery.onValue.listen((Event event) {
-      final Map data = (event.snapshot.value ?? {}) as Map;
+      final Map data = Map<String, dynamic>.from(event.snapshot.value ?? {});
       final List<Map<String, dynamic>> _usersInMap =
           List<Map<String, dynamic>>.from(data.values.toList());
 
@@ -86,8 +86,8 @@ class ChatMessagesController extends GetxController {
 
   @override
   void onInit() {
-    // getMessages();
-    onInit();
+    getMessages();
+    init();
     super.onInit();
   }
 }

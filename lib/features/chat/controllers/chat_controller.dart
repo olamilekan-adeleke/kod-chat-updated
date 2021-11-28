@@ -2,6 +2,9 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:kod_chat/cores/utils/navigator_service.dart';
+import 'package:kod_chat/cores/utils/route_name.dart';
+import 'package:kod_chat/features/chat/controllers/chat_messages_controller.dart';
 import '../../../cores/utils/snack_bar_service.dart';
 import '../../auth/model/user_details_model.dart';
 import 'send_message_controller.dart';
@@ -37,6 +40,10 @@ class ChatController extends GetxController {
       chatRoomId.value = '';
       conversationRoomId.value = '';
     }
+
+    Get.put<ChatMessagesController>(ChatMessagesController());
+
+    NavigationService.navigateTo(RouteName.chatHome);
   }
 
   Future<void> sendMessage() async {

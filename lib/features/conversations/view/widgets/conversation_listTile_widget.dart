@@ -30,7 +30,7 @@ class ConversationListTileWidget extends StatelessWidget {
           selectedChatRoomId: conversation.chatRoomId,
           selectedConversationRoomId: conversation.conversationRoomId,
         );
-        NavigationService.navigateTo(RouteName.chatHome);
+        
       },
       child: Container(
         height: sizerSp(45),

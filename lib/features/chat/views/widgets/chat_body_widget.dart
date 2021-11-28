@@ -6,10 +6,10 @@ import '../../controllers/chat_messages_controller.dart';
 import 'package:kod_chat/features/chat/model/chat_model.dart';
 
 class ChatBodyWidget extends StatelessWidget {
-  const ChatBodyWidget({Key? key}) : super(key: key);
+  ChatBodyWidget({Key? key}) : super(key: key);
 
-  static final ChatMessagesController _chatMessagesController =
-      Get.put<ChatMessagesController>(ChatMessagesController());
+  final ChatMessagesController _chatMessagesController =
+      Get.find<ChatMessagesController>();
 
   @override
   Widget build(BuildContext context) {
