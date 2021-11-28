@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:firebase_database/firebase_database.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../cores/utils/emums.dart';
@@ -10,8 +10,8 @@ import '../model/chat_model.dart';
 class ChatMessagesController extends GetxController {
   static const int limit = 15;
   late final ScrollController scrollController = ScrollController();
-  static final DatabaseReference chatCollectionRef =
-      FirebaseDatabase.instance.reference().child('chats');
+  static final CollectionReference chatCollectionRef =
+      FirebaseFirestore.instance.collection('chats');
   static final ChatController _chatController = Get.find<ChatController>();
   final Rx<ControllerState> controllerState = ControllerState.init.obs;
   final RxList<ChatModel> chats = <ChatModel>[].obs;
@@ -35,10 +35,10 @@ class ChatMessagesController extends GetxController {
 
     // declare query
     Query chatQuery = chatCollectionRef
-        .child(chatRoomId)
-        .child('chat_room')
-        .orderByChild('timestamp')
-        .limitToFirst(limit);
+        .doc(chatRoomId)
+        .collection('chat_room')
+        .orderBy('timestamp', descending: true)
+        .limit(limit);
 
     if (_lastDocument != null) {
       chatQuery = chatQuery.startAt(_lastDocument!['timestamp']);
@@ -46,26 +46,24 @@ class ChatMessagesController extends GetxController {
 
     final int currentPageIndex = _allPagesList.length;
 
-    chatQuery.onValue.listen((Event event) {
-      final Map data = Map<String, dynamic>.from(event.snapshot.value ?? {});
-      final List<Map<String, dynamic>> _usersInMap =
-          List<Map<String, dynamic>>.from(data.values.toList());
+    chatQuery.snapshots().listen((QuerySnapshot<Object?> chatsSnapshot) {
+      final List<Map<String, dynamic>> _chatsRawData = chatsSnapshot.docs
+          .map((e) => Map<String, dynamic>.from(e.data() as Map))
+          .toList();
 
-      // remove first element
-      _usersInMap.removeAt(0);
-
-      final List<ChatModel> _users = _usersInMap
+      final List<ChatModel> _chats = _chatsRawData
           .map((Map<String, dynamic> e) => ChatModel.fromMap(e))
           .toList();
-      log(_users.toString());
 
-      if (_users.isNotEmpty) {
+      log(_chats.toString());
+
+      if (_chats.isNotEmpty) {
         final bool pageExists = currentPageIndex < _allPagesList.length;
 
         if (pageExists) {
-          _allPagesList[currentPageIndex] = _users;
+          _allPagesList[currentPageIndex] = _chats;
         } else {
-          _allPagesList.add(_users);
+          _allPagesList.add(_chats);
         }
 
         final List<ChatModel> _foldedPagesList = _allPagesList.fold(
@@ -76,10 +74,10 @@ class ChatMessagesController extends GetxController {
         chats.value = _foldedPagesList;
 
         if (currentPageIndex == _allPagesList.length - 1) {
-          _lastDocument = _users.last.toMap();
+          _lastDocument = _chats.last.toMap();
         }
 
-        _hasMore = _users.length == limit - 1;
+        _hasMore = _chats.length == limit - 1;
       }
     });
   }

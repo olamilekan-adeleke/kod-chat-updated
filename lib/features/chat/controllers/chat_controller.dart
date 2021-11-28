@@ -2,9 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:kod_chat/cores/utils/navigator_service.dart';
-import 'package:kod_chat/cores/utils/route_name.dart';
-import 'package:kod_chat/features/chat/controllers/chat_messages_controller.dart';
+import 'package:kod_chat/features/chat/controllers/chat_room_instance_manager.dart';
 import '../../../cores/utils/snack_bar_service.dart';
 import '../../auth/model/user_details_model.dart';
 import 'send_message_controller.dart';
@@ -17,8 +15,8 @@ class ChatController extends GetxController {
   final RxString conversationRoomId = ''.obs;
   final Rx<UserDetailsModel> _selectedUser =
       UserDetailsModel(email: '', fullName: '', phoneNumber: '', uid: '').obs;
-  final SendMessageController sendMessageController =
-      Get.find<SendMessageController>();
+  final SendMessageController sendMessageController = Get.find<SendMessageController>();
+  final ChatRoomInstanceManager chatRoomInstanceManager = Get.find<ChatRoomInstanceManager>();
 
   UserDetailsModel? get getSelectedUser {
     if (_selectedUser.value.uid.isEmpty) return null;
@@ -41,9 +39,9 @@ class ChatController extends GetxController {
       conversationRoomId.value = '';
     }
 
-    Get.put<ChatMessagesController>(ChatMessagesController());
+    chatRoomInstanceManager.navigateToChatPage(selectedChatRoomId ?? '');
 
-    NavigationService.navigateTo(RouteName.chatHome);
+    
   }
 
   Future<void> sendMessage() async {
