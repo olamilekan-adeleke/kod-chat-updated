@@ -10,20 +10,22 @@ class ChatBodyWidget extends StatelessWidget {
 
   final String roomId;
 
-  final ChatMessagesController chatMessagesController =
-      Get.find<ChatMessagesController>(tag: '');
-
   @override
   Widget build(BuildContext context) {
-    return Scrollbar(
-      child: ListView.builder(
-        padding: EdgeInsets.symmetric(horizontal: sizerSp(10.0)),
-        itemCount: chatMessagesController.chats.length,
-        itemBuilder: (_, int index) {
-          final ChatModel chat = chatMessagesController.chats[index];
-          return textWidget(chat.message);
-        },
-      ),
-    );
+    final ChatMessagesController chatMessagesController =
+        Get.find<ChatMessagesController>(tag: roomId);
+
+    return Obx(() {
+      return Scrollbar(
+        child: ListView.builder(
+          padding: EdgeInsets.symmetric(horizontal: sizerSp(10.0)),
+          itemCount: chatMessagesController.chats.length,
+          itemBuilder: (_, int index) {
+            final ChatModel chat = chatMessagesController.chats[index];
+            return textWidget(chat.message);
+          },
+        ),
+      );
+    });
   }
 }

@@ -8,10 +8,10 @@ import 'package:kod_chat/features/chat/controllers/test_controller.dart';
 class ChatBinding extends Bindings {
   @override
   void dependencies() {
+    Get.put<ChatRoomInstanceManager>(ChatRoomInstanceManager());
     Get.put<SendMessageController>(SendMessageController());
     Get.put<ChatController>(ChatController());
     Get.put<TestController>(TestController());
-    Get.put<ChatRoomInstanceManager>(ChatRoomInstanceManager());
     // Get.create<ChatMessagesController>(()=> ChatMessagesController());
   }
 }
