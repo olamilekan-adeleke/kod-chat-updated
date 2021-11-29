@@ -2,8 +2,8 @@ import 'dart:developer';
 
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
-import 'package:kod_chat/cores/utils/local_database_repo.dart';
-import 'package:kod_chat/features/auth/model/user_details_model.dart';
+import 'local_database_repo.dart';
+import '../../features/auth/model/user_details_model.dart';
 
 class LocalDatabaseController extends GetxController {
   static final LocaldatabaseRepo localdatabaseRepo = LocaldatabaseRepo();

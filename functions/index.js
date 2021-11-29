@@ -3,14 +3,13 @@ const { v4: uuidv4 } = require("uuid");
 const admin = require("firebase-admin");
 admin.initializeApp();
 
-exports.onNewChatAdded = functions.database
-  .ref("chats/{chatId}/chat_room/{messages}")
+exports.onNewChatAdded = functions.firestore
+  .document("chats/{chatId}/chat_room/{messages}")
   .onCreate(async (snaphot, context) => {
     functions.logger.log(snaphot);
     functions.logger.log(context);
 
-    // const chatJustAdded = Object.values(snaphot.val())[0];
-    const chatJustAdded = snaphot.val();
+    const chatJustAdded = snaphot.data();
     functions.logger.log(chatJustAdded);
 
     const roomId = chatJustAdded.room_id;

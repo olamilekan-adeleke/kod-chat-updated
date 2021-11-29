@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:kod_chat/cores/components/custom_text_widget.dart';
-import 'package:kod_chat/cores/utils/custom_sizer_utils.dart';
+import 'custom_text_widget.dart';
+import '../utils/custom_sizer_utils.dart';
 import '../../cores/constants/color.dart';
 
 Widget loadingIndicator({

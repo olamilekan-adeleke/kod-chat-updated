@@ -2,10 +2,10 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:get/instance_manager.dart';
-import 'package:kod_chat/features/auth/model/user_details_model.dart';
-import 'package:kod_chat/features/auth/services/auth_services.dart';
+import '../../auth/model/user_details_model.dart';
+import '../../auth/services/auth_services.dart';
 
-import 'package:kod_chat/features/chat/model/chat_model.dart';
+import '../../chat/model/chat_model.dart';
 
 final AuthenticationRepo authenticationRepo = Get.find<AuthenticationRepo>();
 

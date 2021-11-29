@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:kod_chat/cores/components/custom_text_widget.dart';
-import 'package:kod_chat/cores/constants/color.dart';
-import 'package:kod_chat/cores/utils/custom_sizer_utils.dart';
+import '../../../../cores/components/custom_text_widget.dart';
+import '../../../../cores/constants/color.dart';
+import '../../../../cores/utils/custom_sizer_utils.dart';
 
 class InitSearchWidget extends StatelessWidget {
   const InitSearchWidget({

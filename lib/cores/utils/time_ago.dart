@@ -1,6 +1,8 @@
+import 'package:intl/intl.dart';
+
 String displayTimeAgo(
   String dateString, {
-  bool numericDates = true,
+  bool numericDates = false,
 }) {
   DateTime date = DateTime.parse(dateString);
   final date2 = DateTime.now();
@@ -22,17 +24,15 @@ String displayTimeAgo(
     return '${difference.inDays} days ago';
   } else if (difference.inDays >= 1) {
     return (numericDates) ? '1 day ago' : 'Yesterday';
-  } else if (difference.inHours >= 2) {
-    return '${difference.inHours} hours ago';
-  } else if (difference.inHours >= 1) {
-    return (numericDates) ? '1 hour ago' : 'An hour ago';
-  } else if (difference.inMinutes >= 2) {
-    return '${difference.inMinutes} mins ago';
-  } else if (difference.inMinutes >= 1) {
-    return (numericDates) ? '1 mins ago' : 'A mins ago';
-  } else if (difference.inSeconds >= 3) {
-    return '${difference.inSeconds} Just now';
   } else {
-    return 'Just now';
+    return '${date.hour < 10 ? '0${date.hour}' : date.hour}:${date.minute < 10 ? '0${date.minute}' : date.minute}';
   }
+}
+
+String timeFromDateTime(int dateTime) {
+  final DateTime date = DateTime.fromMillisecondsSinceEpoch(dateTime);
+
+  String format = DateFormat.jm().format(date);
+
+  return format;
 }

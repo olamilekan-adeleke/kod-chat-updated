@@ -1,10 +1,10 @@
-import 'package:firebase_database/firebase_database.dart';
-import 'package:kod_chat/features/chat/model/chat_model.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import '../model/chat_model.dart';
 import 'package:uuid/uuid.dart';
 
 class ChatService {
-  static final chatCollectionRef =
-      FirebaseDatabase.instance.reference().child('chats');
+  static final CollectionReference chatCollectionRef =
+      FirebaseFirestore.instance.collection('chats');
 
   Future<void> addMessageToChatRoom({
     String? roomId,
@@ -14,7 +14,7 @@ class ChatService {
     // roomId = "a631c610-19a9-11ec-bd0b-f565711c8cc9";
     final String chatRoomId = roomId ?? Uuid().v1();
 
-    await chatCollectionRef.child(chatRoomId).child('chat_room').push().set({
+    await chatCollectionRef.doc(chatRoomId).collection('chat_room').add({
       "room_id": roomId,
       "conversation_room_id": conversationRoomId,
       ...chat.toMap(),

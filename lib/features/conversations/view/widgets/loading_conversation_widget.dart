@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:kod_chat/cores/components/shimmer_widget.dart';
-import 'package:kod_chat/cores/utils/custom_sizer_utils.dart';
+import '../../../../cores/components/shimmer_widget.dart';
+import '../../../../cores/utils/custom_sizer_utils.dart';
 
 class LoadingConversationWidget extends StatelessWidget {
   const LoadingConversationWidget({Key? key}) : super(key: key);

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:kod_chat/cores/constants/color.dart';
-import 'package:kod_chat/cores/utils/custom_sizer_utils.dart';
+import '../constants/color.dart';
+import '../utils/custom_sizer_utils.dart';
 import 'package:shimmer/shimmer.dart';
 
 class CustomShimmerWidget extends StatelessWidget {

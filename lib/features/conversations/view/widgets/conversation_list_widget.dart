@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:kod_chat/cores/components/error_widget.dart';
-import 'package:kod_chat/cores/constants/color.dart';
-import 'package:kod_chat/cores/utils/emums.dart';
-import 'package:kod_chat/features/conversations/controllres/conversation_controller.dart';
-import 'package:kod_chat/features/conversations/model/conversation_model.dart';
-import 'package:kod_chat/features/conversations/view/widgets/conversation_listTile_widget.dart';
-import 'package:kod_chat/features/conversations/view/widgets/loading_conversation_widget.dart';
+import '../../../../cores/components/error_widget.dart';
+import '../../../../cores/constants/color.dart';
+import '../../../../cores/utils/emums.dart';
+import '../../controllres/conversation_controller.dart';
+import '../../model/conversation_model.dart';
+import 'conversation_listTile_widget.dart';
+import 'loading_conversation_widget.dart';
 
 class ConversationListWidget extends StatelessWidget {
   const ConversationListWidget({Key? key}) : super(key: key);

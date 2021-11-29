@@ -1,6 +1,6 @@
 import 'package:get_storage/get_storage.dart' as storage;
-import 'package:kod_chat/cores/faker/generate_random_user_faker.dart';
-import 'package:kod_chat/cores/utils/locator.dart';
+import '../faker/generate_random_user_faker.dart';
+import 'locator.dart';
 import 'firebase_messaging_utils.dart';
 
 class Config {

@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/instance_manager.dart';
-import 'package:kod_chat/cores/components/custom_text_widget.dart';
-import 'package:kod_chat/cores/components/image_widget.dart';
-import 'package:kod_chat/cores/constants/color.dart';
-import 'package:kod_chat/cores/utils/custom_sizer_utils.dart';
-import 'package:kod_chat/cores/utils/emums.dart';
-import 'package:kod_chat/cores/utils/navigator_service.dart';
-import 'package:kod_chat/cores/utils/route_name.dart';
-import 'package:kod_chat/cores/utils/time_ago.dart';
-import 'package:kod_chat/features/chat/controllers/chat_controller.dart';
-import 'package:kod_chat/features/conversations/model/conversation_model.dart';
+
+import '../../../../cores/components/custom_text_widget.dart';
+import '../../../../cores/components/image_widget.dart';
+import '../../../../cores/constants/color.dart';
+import '../../../../cores/utils/custom_sizer_utils.dart';
+import '../../../../cores/utils/emums.dart';
+import '../../../../cores/utils/navigator_service.dart';
+import '../../../../cores/utils/route_name.dart';
+import '../../../../cores/utils/time_ago.dart';
+import '../../../chat/controllers/chat_controller.dart';
+import '../../model/conversation_model.dart';
 
 class ConversationListTileWidget extends StatelessWidget {
   const ConversationListTileWidget({
@@ -29,7 +30,7 @@ class ConversationListTileWidget extends StatelessWidget {
           selectedChatRoomId: conversation.chatRoomId,
           selectedConversationRoomId: conversation.conversationRoomId,
         );
-        NavigationService.navigateTo(RouteName.chatHome);
+        
       },
       child: Container(
         height: sizerSp(45),

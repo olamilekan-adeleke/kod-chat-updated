@@ -1,6 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:kod_chat/cores/utils/config.dart';
+import 'cores/utils/config.dart';
 
 import 'kod_chat_app.dart';
 

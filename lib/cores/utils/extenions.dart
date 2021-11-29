@@ -1,4 +1,4 @@
-import 'package:kod_chat/cores/utils/emums.dart';
+import 'emums.dart';
 
 /// extension for the message eumn
 class MessageTypeExtention {

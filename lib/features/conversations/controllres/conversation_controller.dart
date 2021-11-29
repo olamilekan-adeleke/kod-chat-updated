@@ -3,10 +3,10 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:kod_chat/cores/utils/emums.dart';
-import 'package:kod_chat/cores/utils/snack_bar_service.dart';
-import 'package:kod_chat/features/auth/services/auth_services.dart';
-import 'package:kod_chat/features/conversations/model/conversation_model.dart';
+import '../../../cores/utils/emums.dart';
+import '../../../cores/utils/snack_bar_service.dart';
+import '../../auth/services/auth_services.dart';
+import '../model/conversation_model.dart';
 
 class ConversationController extends GetxController {
   static final AuthenticationRepo authenticationRepo =

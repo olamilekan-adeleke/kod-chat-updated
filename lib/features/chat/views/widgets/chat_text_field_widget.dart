@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:kod_chat/cores/utils/custom_sizer_utils.dart';
-import 'package:kod_chat/features/chat/views/widgets/chat_send_button.dart';
-import 'package:kod_chat/features/chat/views/widgets/text_field.dart';
+import '../../../../cores/utils/custom_sizer_utils.dart';
+import 'chat_send_button.dart';
+import 'text_field.dart';
 
 class ChatTextFieldWidget extends StatelessWidget {
   const ChatTextFieldWidget({Key? key}) : super(key: key);
