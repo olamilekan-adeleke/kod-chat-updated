@@ -57,11 +57,13 @@ class ChatMessageBubbleWidget extends StatelessWidget {
                 color: kcGrey400,
                 size: sizerSp(11),
               ),
-              Icon(
-                Icons.done_all_sharp,
-                size: sizerSp(10),
-                color: kcPrimaryColor, //kcGrey400,
-              ),
+              isSender
+                  ? Icon(
+                      Icons.done_all_sharp,
+                      size: sizerSp(10),
+                      color: kcPrimaryColor, //kcGrey400,
+                    )
+                  : Container(),
             ],
           ),
           SizedBox(height: sizerSp(8)),
