@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:kod_chat/cores/constants/color.dart';
 import '../../../../cores/utils/custom_sizer_utils.dart';
 import '../../controllers/chat_controller.dart';
 
@@ -18,7 +19,10 @@ Widget sendButton() {
         sizerSp(8),
         sizerSp(8),
       ),
-      decoration: BoxDecoration(color: Colors.green, shape: BoxShape.circle),
+      decoration: BoxDecoration(
+        color: kcPrimaryColor,
+        shape: BoxShape.circle,
+      ),
       child: SvgPicture.asset('assets/images/send.svg', color: Colors.white),
     ),
   );
