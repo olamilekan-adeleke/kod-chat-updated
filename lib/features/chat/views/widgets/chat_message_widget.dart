@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:kod_chat/cores/components/custom_text_widget.dart';
 import 'package:kod_chat/cores/constants/color.dart';
 import 'package:kod_chat/cores/utils/custom_sizer_utils.dart';
+import 'package:kod_chat/cores/utils/time_ago.dart';
 import 'package:kod_chat/features/auth/services/auth_services.dart';
 import 'package:kod_chat/features/chat/model/chat_model.dart';
 
@@ -22,27 +23,38 @@ class ChatMessageBubbleWidget extends StatelessWidget {
 
     return Align(
       alignment: isSender ? Alignment.centerRight : Alignment.centerLeft,
-      child: Container(
-        margin: EdgeInsets.symmetric(vertical: sizerSp(5)),
-        padding: EdgeInsets.symmetric(
-          horizontal: sizerSp(5),
-          vertical: sizerSp(8),
-        ),
-        decoration: BoxDecoration(
-          color: isSender ? senderColor : receiverColor,
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(sizerSp(8)),
-            bottomRight: Radius.circular(sizerSp(8)),
-            topLeft: Radius.circular(sizerSp(isSender ? 8 : 0)),
-            topRight: Radius.circular(sizerSp(isSender ? 0 : 8)),
+      child: Column(
+        crossAxisAlignment:
+            isSender ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+        children: [
+          Container(
+            margin: EdgeInsets.symmetric(vertical: sizerSp(5)),
+            padding: EdgeInsets.symmetric(
+              horizontal: sizerSp(5),
+              vertical: sizerSp(8),
+            ),
+            decoration: BoxDecoration(
+              color: isSender ? senderColor : receiverColor,
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(sizerSp(8)),
+                bottomRight: Radius.circular(sizerSp(8)),
+                topLeft: Radius.circular(sizerSp(isSender ? 8 : 0)),
+                topRight: Radius.circular(sizerSp(isSender ? 0 : 8)),
+              ),
+            ),
+            constraints: BoxConstraints(maxWidth: sizerWidth(60)),
+            child: textWidget(
+              '${chat.message} ' * 5,
+              fontWeight: FontWeight.w600,
+              color: isSender ? white : kcTextColor,
+            ),
           ),
-        ),
-        constraints: BoxConstraints(maxWidth: sizerWidth(60)),
-        child: textWidget(
-          chat.message,
-          fontWeight: FontWeight.w600,
-          color: isSender ? white : kcTextColor,
-        ),
+          textWidget(
+            'send at ${timeFromDateTime(chat.timestamp ?? 0)}',
+            fontWeight: FontWeight.w600,
+            color: kcTextColor,
+          ),
+        ],
       ),
     );
   }
