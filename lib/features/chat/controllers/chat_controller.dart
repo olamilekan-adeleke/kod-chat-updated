@@ -68,6 +68,7 @@ class ChatController extends GetxController {
         );
 
         textEditingController.clear();
+        
       } else {
         await sendMessageController.sendMessage(
           text: text,

@@ -16,4 +16,8 @@ class ChatRoomInstanceManager extends GetxController {
 
     NavigationService.navigateTo(RouteName.chatHome);
   }
+
+  void reloadChatRoom(){
+    
+  }
 }

@@ -33,6 +33,8 @@ class ChatMessagesController extends GetxController {
     // get chat room id
     final String chatRoomId = _chatController.chatRoomId.value;
 
+    if (chatRoomId.isEmpty) return;
+
     // declare query
     Query chatQuery = chatCollectionRef
         .doc(chatRoomId)
