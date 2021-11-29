@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kod_chat/cores/utils/snack_bar_service.dart';
@@ -43,7 +44,7 @@ class ChatMessagesController extends GetxController {
         .orderBy('timestamp', descending: true)
         .limit(limit);
 
-    log(_lastDocument.toString());
+    log('last doc: ${_lastDocument}');
 
     if (_lastDocument != null) {
       chatQuery = chatQuery.startAt([_lastDocument!['timestamp']]);
@@ -62,9 +63,16 @@ class ChatMessagesController extends GetxController {
           .map((Map<String, dynamic> e) => ChatModel.fromMap(e))
           .toList();
 
-      log(_chats.toString());
+      // log(_chats.toString());
 
       if (_chats.isNotEmpty) {
+        // check if data already exists
+
+        if (mapEquals(_chats.last.toMap(), _lastDocument)) {
+          controllerState.value = ControllerState.success;
+          return;
+        }
+
         final bool pageExists = currentPageIndex < _allPagesList.length;
 
         if (pageExists) {
