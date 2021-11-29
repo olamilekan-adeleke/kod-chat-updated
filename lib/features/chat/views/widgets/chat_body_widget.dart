@@ -18,6 +18,7 @@ class ChatBodyWidget extends StatelessWidget {
     return Obx(() {
       return Scrollbar(
         child: ListView.builder(
+          reverse: true,
           padding: EdgeInsets.symmetric(horizontal: sizerSp(10.0)),
           itemCount: chatMessagesController.chats.length,
           itemBuilder: (_, int index) {
