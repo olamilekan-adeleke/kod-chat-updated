@@ -55,6 +55,7 @@ class ChatMessagesController extends GetxController {
     controllerState.value = ControllerState.busy;
 
     chatQuery.snapshots().listen((QuerySnapshot<Object?> chatsSnapshot) {
+      
       final List<Map<String, dynamic>> _chatsRawData = chatsSnapshot.docs
           .map((e) => Map<String, dynamic>.from(e.data() as Map))
           .toList();
