@@ -28,7 +28,6 @@ class ChatMessageBubbleWidget extends StatelessWidget {
             isSender ? CrossAxisAlignment.end : CrossAxisAlignment.start,
         children: [
           Container(
-            margin: EdgeInsets.symmetric(vertical: sizerSp(5)),
             padding: EdgeInsets.symmetric(
               horizontal: sizerSp(5),
               vertical: sizerSp(8),
@@ -45,15 +44,27 @@ class ChatMessageBubbleWidget extends StatelessWidget {
             constraints: BoxConstraints(maxWidth: sizerWidth(60)),
             child: textWidget(
               '${chat.message} ' * 5,
-              fontWeight: FontWeight.w600,
+              fontWeight: FontWeight.w500,
               color: isSender ? white : kcTextColor,
             ),
           ),
-          textWidget(
-            'send at ${timeFromDateTime(chat.timestamp ?? 0)}',
-            fontWeight: FontWeight.w600,
-            color: kcTextColor,
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              textWidget(
+                'send at ${timeFromDateTime(chat.timestamp ?? 0)}',
+                fontWeight: FontWeight.w400,
+                color: kcGrey400,
+                size: sizerSp(11),
+              ),
+              Icon(
+                Icons.done_all_sharp,
+                size: sizerSp(10),
+                color: kcPrimaryColor, //kcGrey400,
+              ),
+            ],
           ),
+          SizedBox(height: sizerSp(8)),
         ],
       ),
     );
