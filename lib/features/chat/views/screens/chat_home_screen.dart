@@ -9,16 +9,15 @@ import 'package:kod_chat/features/chat/views/widgets/chat_text_field_widget.dart
 class ChatHomeScreen extends StatelessWidget {
   ChatHomeScreen({Key? key}) : super(key: key);
 
-  final ChatController chatController =
-      Get.find<ChatController>();
+  final ChatController chatController = Get.find<ChatController>();
 
   @override
   Widget build(BuildContext context) {
     return scaffold(
       usePadding: false,
-      appBar: chatHomeAppBar(),
       body: Column(
         children: <Widget>[
+          chatHomeAppBar(),
           Expanded(child: ChatBodyWidget(chatController.chatRoomId.value)),
           ChatTextFieldWidget(),
         ],
