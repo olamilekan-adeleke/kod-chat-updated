@@ -15,8 +15,10 @@ class ChatController extends GetxController {
   final RxString conversationRoomId = ''.obs;
   final Rx<UserDetailsModel> _selectedUser =
       UserDetailsModel(email: '', fullName: '', phoneNumber: '', uid: '').obs;
-  final SendMessageController sendMessageController = Get.find<SendMessageController>();
-  final ChatRoomInstanceManager chatRoomInstanceManager = Get.find<ChatRoomInstanceManager>();
+  final SendMessageController sendMessageController =
+      Get.find<SendMessageController>();
+  final ChatRoomInstanceManager chatRoomInstanceManager =
+      Get.find<ChatRoomInstanceManager>();
 
   UserDetailsModel? get getSelectedUser {
     if (_selectedUser.value.uid.isEmpty) return null;
@@ -40,8 +42,6 @@ class ChatController extends GetxController {
     }
 
     chatRoomInstanceManager.navigateToChatPage(selectedChatRoomId ?? '');
-
-    
   }
 
   Future<void> sendMessage() async {
