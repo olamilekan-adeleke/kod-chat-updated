@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:kod_chat/cores/utils/snack_bar_service.dart';
 import '../../../cores/utils/emums.dart';
 import 'chat_controller.dart';
 import '../model/chat_model.dart';
@@ -24,7 +25,7 @@ class ChatMessagesController extends GetxController {
       if (scrollController.position.pixels >=
           scrollController.position.maxScrollExtent) {
         log('end chat screen');
-        // getMessages();
+        getMessages();
       }
     });
   }
@@ -42,11 +43,15 @@ class ChatMessagesController extends GetxController {
         .orderBy('timestamp', descending: true)
         .limit(limit);
 
+    log(_lastDocument.toString());
+
     if (_lastDocument != null) {
-      chatQuery = chatQuery.startAt(_lastDocument!['timestamp']);
+      chatQuery = chatQuery.startAt([_lastDocument!['timestamp']]);
     }
 
     final int currentPageIndex = _allPagesList.length;
+
+    controllerState.value = ControllerState.busy;
 
     chatQuery.snapshots().listen((QuerySnapshot<Object?> chatsSnapshot) {
       final List<Map<String, dynamic>> _chatsRawData = chatsSnapshot.docs
@@ -80,7 +85,14 @@ class ChatMessagesController extends GetxController {
         }
 
         _hasMore = _chats.length == limit - 1;
+        controllerState.value = ControllerState.success;
       }
+    }).onError((e, s) {
+      controllerState.value = ControllerState.error;
+
+      CustomSnackBarService.showErrorSnackBar('Error', e.toString());
+      log(e.toString());
+      log(s.toString());
     });
   }
 
