@@ -43,7 +43,7 @@ class ChatMessageBubbleWidget extends StatelessWidget {
             ),
             constraints: BoxConstraints(maxWidth: sizerWidth(60)),
             child: textWidget(
-              '${chat.message} ' * 5,
+              '${chat.message}',
               fontWeight: FontWeight.w500,
               color: isSender ? white : kcTextColor,
             ),
