@@ -37,6 +37,8 @@ class ChatMessagesController extends GetxController {
 
     if (chatRoomId.isEmpty) return;
 
+    log('chatRoomId: $chatRoomId');
+
     // declare query
     Query chatQuery = chatCollectionRef
         .doc(chatRoomId)
@@ -55,7 +57,6 @@ class ChatMessagesController extends GetxController {
     controllerState.value = ControllerState.busy;
 
     chatQuery.snapshots().listen((QuerySnapshot<Object?> chatsSnapshot) {
-      
       final List<Map<String, dynamic>> _chatsRawData = chatsSnapshot.docs
           .map((e) => Map<String, dynamic>.from(e.data() as Map))
           .toList();
