@@ -13,17 +13,30 @@ class ConversationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return scaffold(
+      usePadding: false,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          SizedBox(height: sizerSp(20)),
-          GestureDetector(
-            onTap: () => AuthenticationRepo().signOut(),
-            child: textWidget(
-              'Messages',
-              size: sizerSp(25),
-              color: black,
-              fontWeight: FontWeight.bold,
+          // SizedBox(height: sizerSp(20)),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: sizerSp(10)),
+            height: sizerSp(50),
+            decoration: BoxDecoration(
+              color: kcPrimaryColor,
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(sizerSp(8)),
+                bottomRight: Radius.circular(sizerSp(8)),
+              ),
+            ),
+            child: Row(
+              children: [
+                textWidget(
+                  'Messages',
+                  size: sizerSp(25),
+                  color: white,
+                  fontWeight: FontWeight.bold,
+                ),
+              ],
             ),
           ),
           SizedBox(height: sizerSp(10)),
