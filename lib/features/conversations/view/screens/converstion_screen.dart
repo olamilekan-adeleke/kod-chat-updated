@@ -15,10 +15,7 @@ class ConversationScreen extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          // SizedBox(height: sizerSp(20)),
           conversationScreenHeader(),
-          SizedBox(height: sizerSp(10)),
-          SearchBarWidget(),
           SizedBox(height: sizerSp(10)),
           Expanded(child: ConversationListWidget()),
         ],

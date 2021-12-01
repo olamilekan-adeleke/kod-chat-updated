@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:kod_chat/cores/utils/custom_sizer_utils.dart';
 import '../../../../cores/components/error_widget.dart';
 import '../../../../cores/constants/color.dart';
 import '../../../../cores/utils/emums.dart';
@@ -35,6 +36,7 @@ class ConversationListWidget extends StatelessWidget {
       }
 
       return ListView.separated(
+        padding: EdgeInsets.symmetric(horizontal: sizerSp(10)),
         controller: conversationController.scrollController,
         separatorBuilder: (_, __) => Divider(color: kcGrey400),
         shrinkWrap: true,
