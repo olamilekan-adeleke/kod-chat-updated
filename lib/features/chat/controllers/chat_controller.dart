@@ -59,6 +59,8 @@ class ChatController extends GetxController {
         chatRoomId.value = _roomId;
         conversationRoomId.value = _conversationRoomId;
 
+        textEditingController.clear();
+
         await sendMessageController.sendMessage(
           text: text,
           receiverId: _selectedUser.value.uid,
@@ -67,9 +69,11 @@ class ChatController extends GetxController {
           isFirstTime: true,
         );
 
-        textEditingController.clear();
+        
         
       } else {
+        textEditingController.clear();
+
         await sendMessageController.sendMessage(
           text: text,
           receiverId: _selectedUser.value.uid,
@@ -77,7 +81,6 @@ class ChatController extends GetxController {
           conversationRoomId: conversationRoomId.value,
         );
 
-        textEditingController.clear();
       }
     } catch (e, s) {
       log(e.toString());

@@ -48,7 +48,7 @@ class ChatModel {
       senderId: map['sender_id'],
       receiverId: map['receiver_id'],
       isFirstTime: map['is_first_time'],
-      hasPendingWrite: map['hasPendingWrite'],
+      hasPendingWrite: map['hasPendingWrites'],
     );
   }
 

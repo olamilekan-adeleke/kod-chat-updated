@@ -31,7 +31,6 @@ class ChatBodyWidget extends StatelessWidget {
               itemCount: chatMessagesController.chats.length,
               itemBuilder: (_, int index) {
                 final ChatModel chat = chatMessagesController.chats[index];
-                log(chat.toMap().toString());
 
                 return ChatMessageBubbleWidget(chat);
               },
