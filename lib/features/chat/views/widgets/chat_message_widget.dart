@@ -16,6 +16,8 @@ class ChatMessageBubbleWidget extends StatelessWidget {
   static final Color senderColor = Color(0xff125589);
   static final AuthenticationRepo authenticationRepo =
       Get.find<AuthenticationRepo>();
+  static final ValueNotifier<bool> showTimeAndIsRead =
+      ValueNotifier<bool>(false);
 
   @override
   Widget build(BuildContext context) {
@@ -48,24 +50,30 @@ class ChatMessageBubbleWidget extends StatelessWidget {
               color: isSender ? white : kcTextColor,
             ),
           ),
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              textWidget(
-                'send at ${timeFromDateTime(chat.timestamp ?? 0)}',
-                fontWeight: FontWeight.w400,
-                color: kcGrey400,
-                size: sizerSp(11),
-              ),
-              isSender
-                  ? Icon(
-                      Icons.done_all_sharp,
-                      size: sizerSp(10),
-                      color: kcPrimaryColor, //kcGrey400,
-                    )
-                  : Container(),
-            ],
-          ),
+          ValueListenableBuilder<bool>(
+              valueListenable: showTimeAndIsRead,
+              builder: (_, bool show, __) {
+                if (show) return Container();
+
+                return Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    textWidget(
+                      'send at ${timeFromDateTime(chat.timestamp ?? 0)}',
+                      fontWeight: FontWeight.w400,
+                      color: kcGrey400,
+                      size: sizerSp(11),
+                    ),
+                    isSender
+                        ? Icon(
+                            Icons.done_all_sharp,
+                            size: sizerSp(10),
+                            color: kcPrimaryColor, //kcGrey400,
+                          )
+                        : Container(),
+                  ],
+                );
+              }),
           SizedBox(height: sizerSp(8)),
         ],
       ),

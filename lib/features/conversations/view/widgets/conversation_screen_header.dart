@@ -33,7 +33,7 @@ Container conversationScreenHeader() {
         ),
         const Spacer(),
         GestureDetector(
-          onTap:()=> NavigationService.navigateTo(RouteName.searchHome),
+          onTap: () => NavigationService.navigateTo(RouteName.searchHome),
           child: Icon(Icons.search, size: sizerSp(20), color: white),
         ),
         SizedBox(width: sizerSp(8)),

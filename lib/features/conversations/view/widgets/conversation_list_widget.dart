@@ -36,7 +36,10 @@ class ConversationListWidget extends StatelessWidget {
       }
 
       return ListView.separated(
-        padding: EdgeInsets.symmetric(horizontal: sizerSp(10)),
+        padding: EdgeInsets.symmetric(
+          horizontal: sizerSp(10),
+          vertical: sizerSp(5),
+        ),
         controller: conversationController.scrollController,
         separatorBuilder: (_, __) => Divider(color: kcGrey400),
         shrinkWrap: true,

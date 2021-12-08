@@ -6,8 +6,6 @@ import '../../../../cores/components/image_widget.dart';
 import '../../../../cores/constants/color.dart';
 import '../../../../cores/utils/custom_sizer_utils.dart';
 import '../../../../cores/utils/emums.dart';
-import '../../../../cores/utils/navigator_service.dart';
-import '../../../../cores/utils/route_name.dart';
 import '../../../../cores/utils/time_ago.dart';
 import '../../../chat/controllers/chat_controller.dart';
 import '../../model/conversation_model.dart';
@@ -30,7 +28,6 @@ class ConversationListTileWidget extends StatelessWidget {
           selectedChatRoomId: conversation.chatRoomId,
           selectedConversationRoomId: conversation.conversationRoomId,
         );
-        
       },
       child: Container(
         height: sizerSp(45),
@@ -88,8 +85,8 @@ class ConversationListTileWidget extends StatelessWidget {
                   textWidget(
                     displayTimeAgo(
                       DateTime.fromMillisecondsSinceEpoch(
-                              conversation.timestamp)
-                          .toIso8601String(),
+                        conversation.timestamp,
+                      ).toIso8601String(),
                     ),
                     color: Colors.green,
                     fontWeight: FontWeight.w400,

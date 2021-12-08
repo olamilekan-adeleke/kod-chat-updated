@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kod_chat/features/conversations/view/widgets/conversation_screen_header.dart';
 import '../../../../cores/components/custom_scaffold_widget.dart';
-import '../../../../cores/utils/custom_sizer_utils.dart';
 import '../widgets/conversation_list_widget.dart';
 
 class ConversationScreen extends StatelessWidget {
@@ -15,7 +14,6 @@ class ConversationScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           conversationScreenHeader(),
-          SizedBox(height: sizerSp(10)),
           Expanded(child: ConversationListWidget()),
         ],
       ),
