@@ -9,15 +9,14 @@ import 'package:kod_chat/features/auth/services/auth_services.dart';
 import 'package:kod_chat/features/chat/model/chat_model.dart';
 
 class ChatMessageBubbleWidget extends StatelessWidget {
-  const ChatMessageBubbleWidget(this.chat, {Key? key}) : super(key: key);
+  ChatMessageBubbleWidget(this.chat, {Key? key}) : super(key: key);
   final ChatModel chat;
 
   static final Color receiverColor = Color(0xffF3F7FA);
   static final Color senderColor = Color(0xff125589);
   static final AuthenticationRepo authenticationRepo =
       Get.find<AuthenticationRepo>();
-  static final ValueNotifier<bool> showTimeAndIsRead =
-      ValueNotifier<bool>(false);
+  final ValueNotifier<bool> showTimeAndIsRead = ValueNotifier<bool>(false);
 
   @override
   Widget build(BuildContext context) {
@@ -29,31 +28,34 @@ class ChatMessageBubbleWidget extends StatelessWidget {
         crossAxisAlignment:
             isSender ? CrossAxisAlignment.end : CrossAxisAlignment.start,
         children: [
-          Container(
-            padding: EdgeInsets.symmetric(
-              horizontal: sizerSp(5),
-              vertical: sizerSp(8),
-            ),
-            decoration: BoxDecoration(
-              color: isSender ? senderColor : receiverColor,
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(sizerSp(8)),
-                bottomRight: Radius.circular(sizerSp(8)),
-                topLeft: Radius.circular(sizerSp(isSender ? 8 : 0)),
-                topRight: Radius.circular(sizerSp(isSender ? 0 : 8)),
+          GestureDetector(
+            onTap: () => showTimeAndIsRead.value = !showTimeAndIsRead.value,
+            child: Container(
+              padding: EdgeInsets.symmetric(
+                horizontal: sizerSp(5),
+                vertical: sizerSp(8),
               ),
-            ),
-            constraints: BoxConstraints(maxWidth: sizerWidth(60)),
-            child: textWidget(
-              '${chat.message}',
-              fontWeight: FontWeight.w500,
-              color: isSender ? white : kcTextColor,
+              decoration: BoxDecoration(
+                color: isSender ? senderColor : receiverColor,
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(sizerSp(8)),
+                  bottomRight: Radius.circular(sizerSp(8)),
+                  topLeft: Radius.circular(sizerSp(isSender ? 8 : 0)),
+                  topRight: Radius.circular(sizerSp(isSender ? 0 : 8)),
+                ),
+              ),
+              constraints: BoxConstraints(maxWidth: sizerWidth(60)),
+              child: textWidget(
+                '${chat.message}',
+                fontWeight: FontWeight.w500,
+                color: isSender ? white : kcTextColor,
+              ),
             ),
           ),
           ValueListenableBuilder<bool>(
               valueListenable: showTimeAndIsRead,
               builder: (_, bool show, __) {
-                if (show) return Container();
+                if (!show) return Container();
 
                 return Row(
                   mainAxisSize: MainAxisSize.min,
