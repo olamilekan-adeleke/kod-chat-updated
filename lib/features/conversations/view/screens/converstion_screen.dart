@@ -3,7 +3,6 @@ import 'package:kod_chat/features/conversations/view/widgets/conversation_screen
 import '../../../../cores/components/custom_scaffold_widget.dart';
 import '../../../../cores/utils/custom_sizer_utils.dart';
 import '../widgets/conversation_list_widget.dart';
-import '../../../search/views/widgets/serach_bar.dart';
 
 class ConversationScreen extends StatelessWidget {
   const ConversationScreen();
