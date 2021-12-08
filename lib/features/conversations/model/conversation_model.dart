@@ -53,7 +53,7 @@ class ConversationModel {
     );
 
     return ConversationModel(
-      lastMessage: ChatModel.fromMap(map['last_message'], false),
+      lastMessage: ChatModel.fromMap(map['last_message']),
       timestamp: map['timestamp'] as int,
       members: List<String>.from(map['members']),
       chatRoomId: map['chat_room_id'],

@@ -46,7 +46,7 @@ class ChatMessagesController extends GetxController {
         .orderBy('timestamp', descending: true)
         .limit(limit);
 
-    log('last doc: ${_lastDocument}');
+    log('last doc: $_lastDocument');
 
     if (_lastDocument != null) {
       chatQuery = chatQuery.startAt([_lastDocument!['timestamp']]);
@@ -56,21 +56,26 @@ class ChatMessagesController extends GetxController {
 
     controllerState.value = ControllerState.busy;
 
-    chatQuery.snapshots().listen((QuerySnapshot<Object?> chatsSnapshot) {
+    chatQuery
+        .snapshots(includeMetadataChanges: true)
+        .listen((QuerySnapshot<Object?> chatsSnapshot) {
       final List<Map<String, dynamic>> _chatsRawData = chatsSnapshot.docs
-          .map((e) => Map<String, dynamic>.from(e.data() as Map))
-          .toList();
-
-      final List<ChatModel> _chats = _chatsRawData
           .map(
-            (Map<String, dynamic> e) => ChatModel.fromMap(
-              e,
-              chatsSnapshot.metadata.hasPendingWrites,
+            (e) => Map<String, dynamic>.from(
+              {
+                ...e.data() as Map,
+
+                /// add has pending write to the map the model is expecting so UI can
+                /// use to display clock or loading icon for that particular chat
+                'hasPendingWrites': e.metadata.hasPendingWrites,
+              },
             ),
           )
           .toList();
 
-      // log(_chats.toString());
+      final List<ChatModel> _chats = _chatsRawData
+          .map((Map<String, dynamic> e) => ChatModel.fromMap(e))
+          .toList();
 
       if (_chats.isNotEmpty) {
         // check if data already exists

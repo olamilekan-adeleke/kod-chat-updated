@@ -1,8 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kod_chat/cores/components/custom_text_widget.dart';
-import 'package:kod_chat/cores/constants/color.dart';
 import 'package:kod_chat/cores/utils/emums.dart';
 import 'package:kod_chat/features/chat/views/widgets/chat_message_widget.dart';
 import '../../../../cores/utils/custom_sizer_utils.dart';
@@ -30,6 +31,8 @@ class ChatBodyWidget extends StatelessWidget {
               itemCount: chatMessagesController.chats.length,
               itemBuilder: (_, int index) {
                 final ChatModel chat = chatMessagesController.chats[index];
+                log(chat.toMap().toString());
+
                 return ChatMessageBubbleWidget(chat);
               },
             ),

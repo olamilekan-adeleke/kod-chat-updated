@@ -9,7 +9,7 @@ class ChatModel {
     required this.type,
     required this.senderId,
     required this.receiverId,
-    this.isSent,
+    this.hasPendingWrite,
     this.timestamp,
     this.mediaLink,
     this.isFirstTime,
@@ -22,7 +22,7 @@ class ChatModel {
   final String senderId;
   final String receiverId;
   final bool? isFirstTime;
-  final bool? isSent;
+  final bool? hasPendingWrite;
 
   Map<String, dynamic> toMap() {
     return {
@@ -33,11 +33,11 @@ class ChatModel {
       'sender_id': senderId,
       'receiver_id': receiverId,
       'is_first_time': isFirstTime,
-      'is_sent': isSent,
+      'has_pending_write': hasPendingWrite,
     };
   }
 
-  factory ChatModel.fromMap(Map<String, dynamic> map, bool hasPendingWrite ) {
+  factory ChatModel.fromMap(Map<String, dynamic> map ) {
     return ChatModel(
       message: map['message'],
       type: MessageTypeExtention.stringToEunm(map['type']),
@@ -48,7 +48,7 @@ class ChatModel {
       senderId: map['sender_id'],
       receiverId: map['receiver_id'],
       isFirstTime: map['is_first_time'],
-      isSent: hasPendingWrite,
+      hasPendingWrite: map['hasPendingWrite'],
     );
   }
 

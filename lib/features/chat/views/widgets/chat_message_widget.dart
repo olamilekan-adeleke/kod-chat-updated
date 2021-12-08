@@ -66,13 +66,20 @@ class ChatMessageBubbleWidget extends StatelessWidget {
                       color: kcGrey400,
                       size: sizerSp(11),
                     ),
-                    isSender
-                        ? Icon(
-                            Icons.done_all_sharp,
-                            size: sizerSp(10),
-                            color: kcPrimaryColor, //kcGrey400,
-                          )
-                        : Container(),
+                    if (isSender)
+                      chat.hasPendingWrite == true
+                          ? Icon(
+                              Icons.timelapse_outlined,
+                              size: sizerSp(10),
+                              color: kcGrey400,
+                            )
+                          : Icon(
+                              Icons.done_all_sharp,
+                              size: sizerSp(10),
+                              color: kcPrimaryColor, //kcGrey400,
+                            )
+                    else
+                      Container(),
                   ],
                 );
               }),
