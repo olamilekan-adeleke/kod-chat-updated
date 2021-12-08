@@ -16,7 +16,7 @@ class ChatMessageBubbleWidget extends StatelessWidget {
   static final Color senderColor = Color(0xff125589);
   static final AuthenticationRepo authenticationRepo =
       Get.find<AuthenticationRepo>();
-  final ValueNotifier<bool> showTimeAndIsRead = ValueNotifier<bool>(false);
+  final ValueNotifier<bool> showTimeAndIsRead = ValueNotifier<bool>(true);
 
   @override
   Widget build(BuildContext context) {

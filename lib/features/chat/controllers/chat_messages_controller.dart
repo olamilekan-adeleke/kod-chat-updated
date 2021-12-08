@@ -62,7 +62,12 @@ class ChatMessagesController extends GetxController {
           .toList();
 
       final List<ChatModel> _chats = _chatsRawData
-          .map((Map<String, dynamic> e) => ChatModel.fromMap(e))
+          .map(
+            (Map<String, dynamic> e) => ChatModel.fromMap(
+              e,
+              chatsSnapshot.metadata.hasPendingWrites,
+            ),
+          )
           .toList();
 
       // log(_chats.toString());

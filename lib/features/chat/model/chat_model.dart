@@ -9,6 +9,7 @@ class ChatModel {
     required this.type,
     required this.senderId,
     required this.receiverId,
+    this.isSent,
     this.timestamp,
     this.mediaLink,
     this.isFirstTime,
@@ -21,6 +22,7 @@ class ChatModel {
   final String senderId;
   final String receiverId;
   final bool? isFirstTime;
+  final bool? isSent;
 
   Map<String, dynamic> toMap() {
     return {
@@ -31,10 +33,11 @@ class ChatModel {
       'sender_id': senderId,
       'receiver_id': receiverId,
       'is_first_time': isFirstTime,
+      'is_sent': isSent,
     };
   }
 
-  factory ChatModel.fromMap(Map<String, dynamic> map) {
+  factory ChatModel.fromMap(Map<String, dynamic> map, bool hasPendingWrite ) {
     return ChatModel(
       message: map['message'],
       type: MessageTypeExtention.stringToEunm(map['type']),
@@ -45,11 +48,9 @@ class ChatModel {
       senderId: map['sender_id'],
       receiverId: map['receiver_id'],
       isFirstTime: map['is_first_time'],
+      isSent: hasPendingWrite,
     );
   }
 
   String toJson() => json.encode(toMap());
-
-  factory ChatModel.fromJson(String source) =>
-      ChatModel.fromMap(json.decode(source));
 }
